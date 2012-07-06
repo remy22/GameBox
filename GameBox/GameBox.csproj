@@ -39,10 +39,15 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Utils\Log\LogManager.cs" />
     <Compile Include="Utils\Log\LogClient.cs" />
+    <Compile Include="GBOD\GBOD.cs" />
+    <Compile Include="GBOD\GBODChar.cs" />
+    <Compile Include="GBOD\GBODScanner.cs" />
+    <Compile Include="GBOD\GBODStream.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Utils\" />
     <Folder Include="Utils\Log\" />
+    <Folder Include="GBOD\" />
   </ItemGroup>
 </Project>
