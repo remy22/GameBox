@@ -43,6 +43,7 @@
     <Compile Include="GBOD\GBODChar.cs" />
     <Compile Include="GBOD\GBODScanner.cs" />
     <Compile Include="GBOD\GBODStream.cs" />
+    <Compile Include="GBOD\GBODToken.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

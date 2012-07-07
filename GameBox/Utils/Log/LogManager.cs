@@ -8,6 +8,13 @@ namespace GameBox
 		{
 			internal class LogManager
 			{
+				internal enum LogType
+				{
+					Log,
+					Info,
+					Error,
+				}
+
 				private static LogManager instance = null;
 
 				private LogManager ()
@@ -29,6 +36,15 @@ namespace GameBox
 					get { return instance; }
 				}
 
+				internal static LogClient getNewLogClient(string objectName)
+				{
+					return new LogClient(objectName);
+				}
+
+				internal static void write(bool release_,LogType type, string str_)
+				{
+					Console.WriteLine(str_);
+				}
 			}
 		}
 	}
