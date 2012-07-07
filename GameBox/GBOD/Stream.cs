@@ -5,13 +5,13 @@ namespace GameBox
 {
 	namespace GBOD
 	{
-		public class GBODStream
+		public class Stream
 		{
 			private StreamReader reader = null;
 			private ushort x;
 			private uint y;
 
-			public GBODStream (StreamReader reader_)
+			public Stream (StreamReader reader_)
 			{
 				reader = reader_;
 			}
@@ -22,10 +22,10 @@ namespace GameBox
 				y = 0;
 			}
 
-			public GBODChar getNext()
+			public Character getNext()
 			{
 				char ch = (char)reader.Read();
-				return new GBODChar(x, y, ch);
+				return new Character(x, y, ch);
 			}
 
 			public bool EOF

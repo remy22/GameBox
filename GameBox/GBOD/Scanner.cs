@@ -6,25 +6,25 @@ namespace GameBox
 {
 	namespace GBOD
 	{
-		internal class GBODScanner
+		internal class Scanner
 		{
 
-			private GBODStream reader = null;
-			private LogClient log = LogManager.getNewLogClient(typeof(GBODScanner).ToString());
+			private Stream reader = null;
+			private LogClient log = LogManager.getNewLogClient(typeof(Scanner).ToString());
 
-			internal void Scan(GBODStream reader_)
+			internal void Scan(Stream reader_)
 			{
 				reader = reader_;
 
 				reader.Reset();
 			}
 
-			private GBODToken getNextToken(out bool eof,out int error)
+			private Token getNextToken(out bool eof,out int error)
 			{
 				// Move forward to the start of the next token.
-				GBODChar ch;
+				Character ch;
 				log.debug("GetNextToken:");
-				GBODToken token;
+				Token token;
 				error = 0;
 
 				do
@@ -40,7 +40,7 @@ namespace GameBox
 
 				if (ch.Ch == '"')
 				{
-					GBODChar first = (GBODChar)ch.Clone();
+					Character first = (Character)ch.Clone();
 					string str = "" + first.Ch;
 
 					log.debug("Entering in string mode with first = " + first.ToString());
@@ -50,20 +50,20 @@ namespace GameBox
 						ch = reader.getNext();
 						str += ch.Ch;
 					} while (ch.Ch != '"' && !reader.EOF);
-					GBODChar last = (GBODChar)ch.Clone();
+					Character last = (Character)ch.Clone();
 
 					if (reader.EOF)
 					{
 						eof = true;
 						error = 1;
-						return new GBODToken(first, last, GameBox.GBOD.GBODToken.TokenType.ErrorEOFInMiddle, str);;
+						return new Token(first, last, GameBox.GBOD.Token.TokenType.ErrorEOFInMiddle, str);;
 					}
 					log.debug ("Finished reading string on = " + last.ToString());
 					log.debug ("Value: "+str);
-					token = new GBODToken(first, last, GameBox.GBOD.GBODToken.TokenType.ObjectValue, str);
+					token = new Token(first, last, GameBox.GBOD.Token.TokenType.ObjectValue, str);
 				} else if (ch.IsAlpha)
 				{
-					GBODChar first = (GBODChar)ch.Clone();
+					Character first = (Character)ch.Clone();
 					string str = "" + first.Ch;
 
 					log.debug("Entering in PropertyName");
@@ -72,52 +72,52 @@ namespace GameBox
 						ch = reader.getNext();
 						str += ch.Ch;
 					} while (ch.IsAlphaNumeric && !reader.EOF);
-					GBODChar last = (GBODChar)ch.Clone();
+					Character last = (Character)ch.Clone();
 
 					if (reader.EOF)
 					{
 						eof = true;
 						error = 1;
-						return new GBODToken(first, last, GameBox.GBOD.GBODToken.TokenType.ErrorEOFInMiddle, str);;
+						return new Token(first, last, GameBox.GBOD.Token.TokenType.ErrorEOFInMiddle, str);;
 					}
 
 					log.debug ("Finished reading Property name on = " + last.ToString());
 					log.debug ("Value: "+str);
-					token = new GBODToken(first, last, GameBox.GBOD.GBODToken.TokenType.ObjectName, str);
+					token = new Token(first, last, GameBox.GBOD.Token.TokenType.ObjectName, str);
 				} else if (ch.Ch == '{')
 				{
-					GBODChar first = (GBODChar)ch.Clone();
+					Character first = (Character)ch.Clone();
 					string str = "" + first.Ch;
 					log.debug("Entering in {");
-					GBODChar last = (GBODChar)ch.Clone();
+					Character last = (Character)ch.Clone();
 					log.debug ("Finished reading { on = " + last.ToString());
 					log.debug ("Value: "+str);
-					token = new GBODToken(first, last, GameBox.GBOD.GBODToken.TokenType.OpenBracket, str);
+					token = new Token(first, last, GameBox.GBOD.Token.TokenType.OpenBracket, str);
 				} else if (ch.Ch == '}')
 				{
-					GBODChar first = (GBODChar)ch.Clone();
+					Character first = (Character)ch.Clone();
 					string str = "" + first.Ch;
 					log.debug("Entering in }");
-					GBODChar last = (GBODChar)ch.Clone();
+					Character last = (Character)ch.Clone();
 					log.debug ("Finished reading } on = " + last.ToString());
 					log.debug ("Value: "+str);
-					token = new GBODToken(first, last, GameBox.GBOD.GBODToken.TokenType.CloseBracket, str);
+					token = new Token(first, last, GameBox.GBOD.Token.TokenType.CloseBracket, str);
 				} else if (ch.Ch == ':')
 				{
-					GBODChar first = (GBODChar)ch.Clone();
+					Character first = (Character)ch.Clone();
 					string str = "" + first.Ch;
 					log.debug("Entering in :");
-					GBODChar last = (GBODChar)ch.Clone();
+					Character last = (Character)ch.Clone();
 					log.debug ("Finished reading : on = " + last.ToString());
 					log.debug ("Value: "+str);
-					token = new GBODToken(first, last, GameBox.GBOD.GBODToken.TokenType.Colon, str);
+					token = new Token(first, last, GameBox.GBOD.Token.TokenType.Colon, str);
 				} else
 				{
-					GBODChar first = (GBODChar)ch.Clone();
-					GBODChar last = (GBODChar)ch.Clone();
+					Character first = (Character)ch.Clone();
+					Character last = (Character)ch.Clone();
 					log.debug("Invalid value found on = " + first.ToString());
 					eof = false;
-					return new GBODToken(first, last, GameBox.GBOD.GBODToken.TokenType.ErrorInvalidChar, ch.Ch.ToString());
+					return new Token(first, last, GameBox.GBOD.Token.TokenType.ErrorInvalidChar, ch.Ch.ToString());
 				}
 				eof = reader.EOF;
 				return token;

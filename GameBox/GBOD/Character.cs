@@ -4,13 +4,13 @@ namespace GameBox
 {
 	namespace GBOD
 	{
-		public class GBODChar : ICloneable
+		public class Character : ICloneable
 		{
 			private char ch;
 			private ushort x;
 			private uint y;
 
-			internal GBODChar (ushort x_, uint y_, char ch_)
+			internal Character (ushort x_, uint y_, char ch_)
 			{
 				x = x_;
 				y = y_;
@@ -64,7 +64,7 @@ namespace GameBox
 			#region ICloneable implementation
 			public object Clone ()
 			{
-				return new GBODChar(x, y, ch);
+				return new Character(x, y, ch);
 			}
 			#endregion
 

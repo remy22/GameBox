@@ -40,10 +40,10 @@
     <Compile Include="Utils\Log\LogManager.cs" />
     <Compile Include="Utils\Log\LogClient.cs" />
     <Compile Include="GBOD\GBOD.cs" />
-    <Compile Include="GBOD\GBODChar.cs" />
-    <Compile Include="GBOD\GBODScanner.cs" />
-    <Compile Include="GBOD\GBODStream.cs" />
-    <Compile Include="GBOD\GBODToken.cs" />
+    <Compile Include="GBOD\Character.cs" />
+    <Compile Include="GBOD\Scanner.cs" />
+    <Compile Include="GBOD\Stream.cs" />
+    <Compile Include="GBOD\Token.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

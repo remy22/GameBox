@@ -4,7 +4,7 @@ namespace GameBox
 {
 	namespace GBOD
 	{
-		internal class GBODToken
+		internal class Token
 		{
 			internal enum TokenType
 			{
@@ -19,11 +19,11 @@ namespace GameBox
 			}
 
 			private string TokenValue;
-			private GBODChar First;
-			private GBODChar Last;
+			private Character First;
+			private Character Last;
 			private TokenType Type;
 
-			internal GBODToken(GBODChar first_, GBODChar last_, TokenType type_, string value)
+			internal Token(Character first_, Character last_, TokenType type_, string value)
 			{
 				First = first_;
 				Last = last_;
