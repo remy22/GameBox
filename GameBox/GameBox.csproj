@@ -44,11 +44,16 @@
     <Compile Include="GBOD\Scanner.cs" />
     <Compile Include="GBOD\Stream.cs" />
     <Compile Include="GBOD\Token.cs" />
+    <Compile Include="GBOD\TokenList.cs" />
+    <Compile Include="GBOD\Types\GBObject.cs" />
+    <Compile Include="GBOD\Types\GBMetaObject.cs" />
+    <Compile Include="GBOD\Parser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Utils\" />
     <Folder Include="Utils\Log\" />
     <Folder Include="GBOD\" />
+    <Folder Include="GBOD\Types\" />
   </ItemGroup>
 </Project>

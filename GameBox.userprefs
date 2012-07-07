@@ -1,12 +1,15 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\GBOD\GBODScanner.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\GBOD\Types\GBMetaObject.cs">
     <Files>
       <File FileName="GameBox\gbod\GBOD.cs" Line="8" Column="1" />
-      <File FileName="GameBox\GBOD\GBODChar.cs" Line="35" Column="3" />
-      <File FileName="GameBox\GBOD\GBODScanner.cs" Line="38" Column="5" />
-      <File FileName="GameBox\GBOD\GBODStream.cs" Line="8" Column="1" />
-      <File FileName="GameBox\GBOD\GBODToken.cs" Line="16" Column="8" />
+      <File FileName="GameBox\GBOD\Character.cs" Line="67" Column="25" />
+      <File FileName="GameBox\GBOD\Scanner.cs" Line="117" Column="33" />
+      <File FileName="GameBox\GBOD\Stream.cs" Line="28" Column="25" />
+      <File FileName="GameBox\GBOD\Token.cs" Line="39" Column="38" />
+      <File FileName="GameBox\GBOD\TokenList.cs" Line="8" Column="1" />
+      <File FileName="GameBox\GBOD\Types\GBMetaObject.cs" Line="17" Column="5" />
+      <File FileName="GameBox\GBOD\Types\GBObject.cs" Line="18" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

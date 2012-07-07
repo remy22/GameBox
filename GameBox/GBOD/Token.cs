@@ -30,6 +30,16 @@ namespace GameBox
 				Type = type_;
 				TokenValue = value;
 			}
+
+			internal bool Error
+			{
+				get { return Type == TokenType.ErrorEOFInMiddle || Type == TokenType.ErrorInvalidChar; }
+			}
+
+			public override string ToString ()
+			{
+				return string.Format ("[({0},{1}):{2}:{3}]",First.ToString(),Last.ToString(),Type.ToString(),TokenValue);
+			}
 		}
 	}
 }
