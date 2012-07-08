@@ -31,6 +31,11 @@ namespace GameBox
 
 				return result;
 			}
+
+			internal Token this[int value]
+			{
+				get { return tList[value]; }
+			}
 		}
 	}
 }

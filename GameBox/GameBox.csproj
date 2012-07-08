@@ -48,6 +48,7 @@
     <Compile Include="GBOD\Types\GBObject.cs" />
     <Compile Include="GBOD\Types\GBMetaObject.cs" />
     <Compile Include="GBOD\Parser.cs" />
+    <Compile Include="GBOD\Types\GBString.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
