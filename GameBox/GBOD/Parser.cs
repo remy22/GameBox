@@ -1,4 +1,5 @@
 using System;
+using GameBox.Utils.Log;
 
 namespace GameBox
 {
@@ -39,7 +40,7 @@ namespace GameBox
 
 				while (tList[currentIndex].Type == Token.TokenType.ObjectName)
 				{
-					ParseProperty();
+					ParseProperty(currentIndex, out lastParsed);
 				}
 			}
 
@@ -52,7 +53,26 @@ namespace GameBox
 				{
 					lastParsed = currentIndex;
 					return setError(-2);
+				}
 
+				currentIndex++;
+
+				if (tList[currentIndex].Type != Token.TokenType.Colon)
+				{
+					lastParsed = currentIndex;
+					return setError(-3);
+				}
+
+				// Now, there are 2 possibilites. An string or a new object definition.
+				if (tList[currentIndex].Type == Token.TokenType.ObjectValue)
+				{
+					// Is a string.
+				} else if (tList[currentIndex].Type == Token.TokenType.OpenBracket)
+				{
+					// Is a new object definition.
+				} else {
+					lastParsed = currentIndex;
+					return setError(-4);
 				}
 			}
 		}
