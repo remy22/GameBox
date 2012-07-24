@@ -1,0 +1,2 @@
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Release\GameBox.exe
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Release\GameBox.exe

@@ -1,0 +1,5 @@
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Debug\GameBox.exe
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Debug\GameBox.pdb
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Debug\GameBox.exe
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Debug\GameBox.pdb
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Debug\GameBox.csprojResolveAssemblyReference.cache

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -9,7 +9,13 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>GameBox</RootNamespace>
     <AssemblyName>GameBox</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <StartupObject>GameBox.MainClass</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>true</Externalconsole>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -33,29 +40,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GBObject\GBObject.cs" />
+    <Compile Include="InternalServices\Configuration.cs" />
+    <Compile Include="InternalServices\Singleton.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Utils\Log\LogManager.cs" />
-    <Compile Include="Utils\Log\LogClient.cs" />
-    <Compile Include="GBOD\GBOD.cs" />
-    <Compile Include="GBOD\Character.cs" />
-    <Compile Include="GBOD\Scanner.cs" />
-    <Compile Include="GBOD\Stream.cs" />
-    <Compile Include="GBOD\Token.cs" />
-    <Compile Include="GBOD\TokenList.cs" />
-    <Compile Include="GBOD\Types\GBObject.cs" />
-    <Compile Include="GBOD\Types\GBMetaObject.cs" />
-    <Compile Include="GBOD\Parser.cs" />
-    <Compile Include="GBOD\Types\GBString.cs" />
-    <Compile Include="GBOD\Types\GBProperty.cs" />
+    <Compile Include="Model\Section.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Utils\" />
-    <Folder Include="Utils\Log\" />
-    <Folder Include="GBOD\" />
-    <Folder Include="GBOD\Types\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
