@@ -3,28 +3,31 @@ using System.Collections.Generic;
 
 namespace GameBox.Model
 {
-    internal class Section
+    internal class TreeNode
     {
-        private Dictionary<string, Section> childrenSections = new Dictionary<string, Section>();
+        private List<TreeNode> childrenSections = new List<TreeNode>();
         private Dictionary<string, string> childrenLeaf = new Dictionary<string, string>();
+        private string name = "noNamed";
 
-        internal Section()
+        internal string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        internal TreeNode()
         {
         }
 
-        internal void AddChildSection(string name_)
+        internal TreeNode AddChildSection(TreeNode newSection)
         {
-            AddChildSection(name_, new Section());
-        }
-
-        internal void AddChildSection(string name_, Section newSection)
-        {
-            childrenSections.Add(name_, newSection);
+            childrenSections.Add(newSection);
+            return newSection;
         }
 
         internal void AddLeaf(string name_)
         {
-            AddLeaf(name_, "");
+            AddLeaf(name_, default(string));
         }
 
         internal void AddLeaf(string name_, string value_)
@@ -37,12 +40,16 @@ namespace GameBox.Model
             return childrenLeaf[name_];
         }
 
-        internal Section GetSection(string name_)
+        internal TreeNode GetSection(string name_)
         {
-            return childrenSections[name_];
+            foreach (TreeNode s in childrenSections)
+                if (s.name.Equals(name_))
+                    return s;
+
+            return null;
         }
 
-        internal Dictionary<string, Section> Sections
+        internal List<TreeNode> Sections
         {
             get { return childrenSections; }
         }

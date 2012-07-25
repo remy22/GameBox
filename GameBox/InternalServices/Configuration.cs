@@ -9,21 +9,23 @@ namespace GameBox.InternalServices
     {
         private const string SectionHeader = "section::";
         private const string SectionClose = "::";
-        private const char[] separators = { '=' };
-        private Section mainConfig = new Section();
-        private Stack<Section> childrenSections = new Stack<Section>();
+        private char[] separators = { '=' };
+        private char[] sectionAddressSeparators = { '/' };
+        private char[] leafAddressSeparators = { '.' };
+        private TreeNode mainConfig = new TreeNode();
+        private Stack<TreeNode> childrenSections = new Stack<TreeNode>();
 
         public Configuration()
         {
         }
 
-        internal void SaveSection(string key, Section section,StreamWriter sw)
+        internal void SaveSection(TreeNode section,StreamWriter sw)
         {
-            sw.WriteLine(SectionHeader + key);
+            sw.WriteLine(SectionHeader + section.Name);
 
-            foreach (KeyValuePair<string, Section> s in section.Sections)
+            foreach (TreeNode s in section.Sections)
             {
-                SaveSection(s.Key, s.Value, sw);
+                SaveSection(s, sw);
             }
 
             foreach (KeyValuePair<string, string> s in section.Leafs)
@@ -39,8 +41,8 @@ namespace GameBox.InternalServices
             {
                 using (StreamWriter sw = new StreamWriter("config.cfg"))
                 {
-                    Section currentSection = mainConfig;
-                    SaveSection("main", currentSection, sw);
+                    TreeNode currentSection = mainConfig;
+                    SaveSection(currentSection, sw);
                 }
             }
             catch (Exception e)
@@ -58,7 +60,7 @@ namespace GameBox.InternalServices
                 using (StreamReader sr = new StreamReader("config.cfg"))
                 {
                     string line;
-                    Section currentSection = mainConfig;
+                    TreeNode currentSection = null;
 
                     while ((line = sr.ReadLine()) != null)
                     {
@@ -68,20 +70,17 @@ namespace GameBox.InternalServices
                             // Get the section name.
                             string sName = line.Substring(SectionHeader.Length);
 
-                            if (sName == "main" && currentSection == mainConfig)
-                            {
-                            }
-                            else
-                            {
-                                Section internalSection = new Section();
-                                currentSection.AddChildSection(sName, internalSection);
-                                childrenSections.Push(currentSection);
-                                currentSection = internalSection;
-                            }
+                            TreeNode internalSection = new TreeNode{ Name = sName };
+                            currentSection.AddChildSection(internalSection);
+                            childrenSections.Push(currentSection);
+                            currentSection = internalSection;
                         }
                         else if (line.StartsWith(SectionClose))
                         {
-                            currentSection = childrenSections.Pop();
+                            if (childrenSections.Count > 1)
+                                currentSection = childrenSections.Pop();
+                            else if (childrenSections.Count == 1)
+                                mainConfig = childrenSections.Pop();
                         }
                         else
                         {
