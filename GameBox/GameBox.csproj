@@ -42,12 +42,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GBObject\GBObject.cs" />
     <Compile Include="InternalServices\Configuration.cs" />
-    <Compile Include="InternalServices\Singleton.cs" />
+    <Compile Include="InternalServices\Logger.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Model\TreeNode.cs" />

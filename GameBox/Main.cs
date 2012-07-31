@@ -7,11 +7,11 @@ namespace GameBox
 	{
 		public static void Main (string[] args)
 		{
-			Console.WriteLine ("Hello World!");
             Console.WriteLine("Welcome to GameBox");
             Console.WriteLine("Reading configuration...");
 
-            Configuration.create().Init();
+            Configuration.Init();
+            Configuration.Destroy();
 
         }
 	}
