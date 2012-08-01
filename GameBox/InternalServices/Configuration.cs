@@ -31,14 +31,14 @@ namespace GameBox.InternalServices
 
         internal static void Init()
         {
-            mainConfig = new TreeNode { Name = "SystemConfig" };
             try
             {
                 using (StreamReader sr = new StreamReader("config.cfg"))
                 {
-                    mainConfig.LoadSection(sr);
+                    SystemData.RootData.LoadSection(sr);
                     sr.Close();
                 }
+
             }
             catch (Exception e)
             {

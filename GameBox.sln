@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBox", "GameBox\GameBox.csproj", "{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGLTest", "OpenGLTest\OpenGLTest.csproj", "{1D6D5D62-4E95-4D92-83D0-74F6978C36F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}.Debug|x86.Build.0 = Debug|x86
 		{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}.Release|x86.ActiveCfg = Release|x86
 		{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}.Release|x86.Build.0 = Release|x86
+		{1D6D5D62-4E95-4D92-83D0-74F6978C36F0}.Debug|x86.ActiveCfg = Debug|x86
+		{1D6D5D62-4E95-4D92-83D0-74F6978C36F0}.Debug|x86.Build.0 = Debug|x86
+		{1D6D5D62-4E95-4D92-83D0-74F6978C36F0}.Release|x86.ActiveCfg = Release|x86
+		{1D6D5D62-4E95-4D92-83D0-74F6978C36F0}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

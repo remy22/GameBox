@@ -47,6 +47,7 @@
     <Compile Include="GBObject\GBObject.cs" />
     <Compile Include="InternalServices\Configuration.cs" />
     <Compile Include="InternalServices\Logger.cs" />
+    <Compile Include="InternalServices\SystemData.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Model\TreeNode.cs" />
