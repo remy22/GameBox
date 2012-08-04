@@ -1,5 +1,6 @@
 using System;
 using GameBox.InternalServices;
+using GameBox.Graphics;
 
 namespace GameBox
 {
@@ -12,6 +13,9 @@ namespace GameBox
 
             Configuration.Init();
             Configuration.Destroy();
+
+            DeviceDelegate device = new DeviceDelegate();
+            device.Run();
 
         }
 	}
