@@ -56,7 +56,9 @@
     <Compile Include="GBObject\GBObject.cs" />
     <Compile Include="Graphics\DeviceDelegate.cs" />
     <Compile Include="Graphics\DeviceExample.cs" />
-    <Compile Include="Graphics\Mesh.cs" />
+    <Compile Include="Graphics\Node.cs" />
+    <Compile Include="Graphics\VBOManager.cs" />
+    <Compile Include="Graphics\VertexBufferObject.cs" />
     <Compile Include="Graphics\VertexData.cs" />
     <Compile Include="InternalServices\Configuration.cs" />
     <Compile Include="InternalServices\Logger.cs" />
