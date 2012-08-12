@@ -12,6 +12,8 @@ namespace GameBox.Graphics
         }
 
         private VertexData[] vertexData = null;
+        private int indexVBO = -1;
+        private bool MustUpdate = true;
         private Node parent = null;
         private List<Node> children = new List<Node>();
 
@@ -69,9 +71,21 @@ namespace GameBox.Graphics
 
         internal void Render()
         {
-            if (vertexData != null)
+            VertexBufferObject vbo = VBOManager.GetVBO(meshType);
+            if (indexVBO < 0 && vertexData != null)
             {
-                VBOManager.GetVBO(meshType).Add(vertexData);
+                // I need a index array for the VBO.
+                indexVBO = vbo.GetNewIndex(vertexData);
+                MustUpdate = true;
+            }
+
+            if (MustUpdate && vertexData != null)
+            {
+                for (int i=0;i< vertexData.Length;++i)
+                {
+                    vbo[indexVBO + i] = vertexData[i];
+                }
+                MustUpdate = false;
             }
 
             foreach (Node c in children)

@@ -15,7 +15,7 @@ namespace GameBox.Graphics
         }
 
         Node parentNode = null;
-        int MaxParticleCount = 100;
+        int MaxParticleCount = 10000;
 
         protected override void OnLoad(EventArgs e)
         {
@@ -86,21 +86,19 @@ namespace GameBox.Graphics
 
             VertexData vData = new VertexData();
             Random rnd = new Random();
-            /*
+            
             for (int i = 0; i < MaxParticleCount; i++)
             {
-                Node child = parentNode.CreateChild(Node.NodeType.Point);
                 vData.R = (byte)rnd.Next(0, 256);
                 vData.G = (byte)rnd.Next(0, 256);
                 vData.B = (byte)rnd.Next(0, 256);
                 vData.A = (byte)rnd.Next(0, 256); // isn't actually used
-                vData.Position = Vector3.Zero;
-//                vData.Position = new Vector3((float)(rnd.NextDouble() * 2) - 0.5f,
-//                    (float)(rnd.NextDouble() * 2) - 0.5f,
-//                    (float)0.0);
-//                parentNode.Child(i)[0] = vData;
+                vData.Position = new Vector3((float)(rnd.NextDouble() * 2) - 0.5f,
+                    (float)(rnd.NextDouble() * 2) - 0.5f,
+                    (float)(rnd.NextDouble() * 2) - 0.5f);
+                parentNode.Child(i)[0] = vData;
             }
-        */
+        
             parentNode.Render();
         }
 
@@ -126,6 +124,8 @@ namespace GameBox.Graphics
             GL.Translate(0f, 0f, 0);
 
             VBOManager.Draw();
+//            VBOManager.Draw();
+
             /*
             // Tell OpenGL to discard old VBO when done drawing it and reserve memory _now_ for a new buffer.
             // without this, GL would wait until draw operations on old VBO are complete before writing to it
@@ -138,6 +138,7 @@ namespace GameBox.Graphics
             */
 //            tempMesh.Render();
             GL.PopMatrix();
+            //GL.Finish();
 
             SwapBuffers();
         }

@@ -53,34 +53,22 @@ namespace GameBox.Graphics
             data = newInstance;
         }
 
-        internal void Add(ref VertexData vData)
+        internal int GetNewIndex(VertexData[] data_)
         {
-            while (index >= data.Length)
+            while (data.Length <= index + data_.Length)
             {
                 ResizeArray();
             }
 
-            data[index] = vData;
-            index++;
+            int val = index;
+            index += data_.Length;
+            return val;
         }
 
-        internal void Add(VertexData[] vData, int len)
+        internal VertexData this[int index]
         {
-            while (index + len >= data.Length)
-            {
-                ResizeArray();
-            }
-
-            for (int i=0;i<len;++i)
-            {
-                data[index] = vData[i];
-                index++;
-            }
-        }
-
-        internal void Add(VertexData[] vData)
-        {
-            Add(vData, vData.Length);
+            get { return data[index]; }
+            set { data[index] = value; }
         }
 
         internal void Draw()
@@ -92,8 +80,6 @@ namespace GameBox.Graphics
             GL.BufferData(BufferTarget.ArrayBuffer, (IntPtr)(VertexData.SizeInBytes * index), data, BufferUsageHint.StreamDraw);
             // Only draw particles that are alive
             GL.DrawArrays(BeginMode.Points, 0, index);
-
-            index = 0;
         }
     }
 }

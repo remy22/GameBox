@@ -1,17 +1,8 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\GBOD\Parser.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Graphics\DeviceExample.cs">
     <Files>
-      <File FileName="GameBox\gbod\GBOD.cs" Line="8" Column="1" />
-      <File FileName="GameBox\GBOD\Character.cs" Line="67" Column="25" />
-      <File FileName="GameBox\GBOD\Scanner.cs" Line="14" Column="1" />
-      <File FileName="GameBox\GBOD\Stream.cs" Line="28" Column="25" />
-      <File FileName="GameBox\GBOD\Token.cs" Line="54" Column="23" />
-      <File FileName="GameBox\GBOD\TokenList.cs" Line="39" Column="4" />
-      <File FileName="GameBox\GBOD\Types\GBMetaObject.cs" Line="36" Column="2" />
-      <File FileName="GameBox\GBOD\Parser.cs" Line="81" Column="75" />
-      <File FileName="GameBox\GBOD\Types\GBProperty.cs" Line="32" Column="3" />
-      <File FileName="GameBox\GBOD\Types\GBObject.cs" Line="9" Column="1" />
+      <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Graphics\DeviceExample.cs" Line="57" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
