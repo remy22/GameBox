@@ -13,10 +13,14 @@ namespace GameBox
 
             Configuration.Init();
             Configuration.Destroy();
-            
+
+            StaticVBODelegate device = new StaticVBODelegate();
+            device.Run();
+
+            /*
             DeviceDelegate device = new DeviceDelegate();
             device.Run();
-            /*
+            
             DeviceExample device = new DeviceExample();
             device.Run();
              */
