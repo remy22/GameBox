@@ -5,7 +5,7 @@ namespace GameBox.Graphics
 {
     internal class Node : IDisposable
     {
-        enum NodeType
+        internal enum NodeType
         {
             Container,
             Cube

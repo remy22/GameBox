@@ -9,7 +9,6 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>GameBox</RootNamespace>
     <AssemblyName>GameBox</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <StartupObject>GameBox.MainClass</StartupObject>
     <FileUpgradeFlags>
@@ -37,7 +36,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -46,44 +45,44 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>true</Externalconsole>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK.GLControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\OpenTK.GLControl.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+    <Reference Include="OpenTK">
+      <HintPath>OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl">
+      <HintPath>OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GBObject\GBObject.cs" />
+    <Compile Include="Context\Config.cs" />
     <Compile Include="Graphics\DeviceDelegate.cs" />
     <Compile Include="Graphics\DeviceExample.cs" />
-    <Compile Include="Graphics\INodeDefinition.cs" />
     <Compile Include="Graphics\Node.cs" />
-    <Compile Include="Graphics\CubeDefinition.cs" />
-    <Compile Include="Graphics\NodeDefinitions.cs" />
+    <Compile Include="Graphics\Nodes\Scene.cs" />
     <Compile Include="Graphics\StaticVBODelegate.cs" />
+    <Compile Include="Graphics\Types\GBProperties.cs" />
+    <Compile Include="Graphics\Types\GBFile.cs" />
+    <Compile Include="Graphics\Types\IConvertibleFromGBProperties.cs" />
     <Compile Include="Graphics\VBO.cs" />
+    <Compile Include="Graphics\VBODefinitions.cs" />
     <Compile Include="Graphics\VertexPositionColor.cs" />
-    <Compile Include="InternalServices\Configuration.cs" />
-    <Compile Include="InternalServices\Logger.cs" />
-    <Compile Include="InternalServices\SystemData.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Model\TreeNode.cs" />
+    <Compile Include="ObjectSerialization\NodeData.cs" />
+    <Compile Include="Services\FileManager.cs" />
+    <Compile Include="Services\Logger.cs" />
+    <Compile Include="Services\GBException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

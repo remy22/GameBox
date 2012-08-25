@@ -1,13 +1,16 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Graphics\DeviceExample.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\Main.cs">
     <Files>
       <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Graphics\DeviceExample.cs" Line="57" Column="13" />
       <File FileName="GameBox\Graphics\DeviceDelegate.cs" Line="1" Column="1" />
+      <File FileName="GameBox\Main.cs" Line="18" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Main.cs" line="14" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
