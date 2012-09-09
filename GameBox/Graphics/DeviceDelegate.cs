@@ -12,17 +12,40 @@ using System.Drawing;
 using GameBox.Context;
 using GameBox.ObjectSerialization;
 using GameBox.Graphics.Types;
+using GameBox.Services;
 
 namespace GameBox.Graphics
 {
     internal class DeviceDelegate : GameWindow
     {
+        internal static DeviceDelegate instance = null;
 
         internal static DeviceDelegate create()
         {
-            NodeData d = Config.Data.getChildFromAddress("config/video/resolution");
-//            int w = d.getProperty(
+            if (instance == null)
+            {
+                NodeData d = Config.Data.getChildFromAddress("video/resolution");
+                int w = d.getPropertyInt("x", "800");
+                int h = d.getPropertyInt("y", "800");
 
+                Logger.debugInfo("Creating device...");
+                DeviceDelegate dDelegate = new DeviceDelegate();
+
+                Logger.debug("Created device with properties:");
+                Logger.debug("GraphicsMode: " + dDelegate.Context.GraphicsMode);
+                Logger.debug("ClientSize: " + dDelegate.ClientSize);
+                Logger.debug("Bounds: " + dDelegate.Bounds);
+                Logger.debug("ClientRectangle: " + dDelegate.ClientRectangle);
+                instance = dDelegate;
+            }
+
+            return instance;
+        }
+
+        internal static void StaticRun()
+        {
+            if (instance != null)
+                instance.Run();
         }
 
         internal  DeviceDelegate(): base()
@@ -35,6 +58,7 @@ namespace GameBox.Graphics
             base.OnLoad(e);
 
             string version = GL.GetString(StringName.Version);
+            Logger.debugInfo("OpenGL version:" + version);
             int major = (int)version[0];
             int minor = (int)version[2];
             if (major <= 1 && minor < 5)
@@ -45,8 +69,13 @@ namespace GameBox.Graphics
             GL.ClearColor(System.Drawing.Color.MidnightBlue);
             GL.Enable(EnableCap.DepthTest);
 
-            vbo[0] = LoadVBO(CubeVertices, CubeElements);
-            vbo[1] = LoadVBO(CubeVertices, CubeElements);
+            LogicController.Init();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            base.OnUnload(e);
+            Logger.debug("Unloading context");
         }
 
         protected override void OnResize(EventArgs e)
@@ -64,6 +93,7 @@ namespace GameBox.Graphics
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
+            LogicController.Update(e);
 
             if (Keyboard[OpenTK.Input.Key.Escape])
                 this.Exit();
@@ -73,6 +103,7 @@ namespace GameBox.Graphics
         private double ellapsed = 0.0;
         private double ellapsedOld = 0.0;
         private double fps = 0.0;
+
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             base.OnRenderFrame(e);
@@ -90,16 +121,6 @@ namespace GameBox.Graphics
             Matrix4 lookat = Matrix4.LookAt(0, 5, 5, 0, 0, 0, 0, 1, 0);
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadMatrix(ref lookat);
-
-            angle += rotation_speed * (float)e.Time;
-            GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
-
-            Draw(vbo[0]);
-            for (int i = 0; i < 100; ++i)
-            {
-                GL.Translate(0.01, 0.0, 0.0);
-                Draw(vbo[0]);
-            }
 
             SwapBuffers();
         }
@@ -142,7 +163,7 @@ namespace GameBox.Graphics
             // 3) Set up the data pointers (vertex, normal, color) according to your vertex format.
             // 4) Call DrawElements. (Note: the last parameter is an offset into the element buffer
             //    and will usually be IntPtr.Zero).
-
+/*
             GL.EnableClientState(ArrayCap.ColorArray);
             GL.EnableClientState(ArrayCap.VertexArray);
 
@@ -153,6 +174,7 @@ namespace GameBox.Graphics
             GL.ColorPointer(4, ColorPointerType.UnsignedByte, BlittableValueType.StrideOf(CubeVertices), new IntPtr(12));
 
             GL.DrawElements(BeginMode.Triangles, handle.NumElements, DrawElementsType.UnsignedShort, IntPtr.Zero);
+ * */
         }
     }
 }

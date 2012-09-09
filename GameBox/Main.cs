@@ -2,6 +2,7 @@ using System;
 using GameBox.Graphics;
 using GameBox.ObjectSerialization;
 using GameBox.Context;
+using GameBox.Services;
 
 namespace GameBox
 {
@@ -9,11 +10,12 @@ namespace GameBox
 	{
 		public static void Main (string[] args)
 		{
-            Console.WriteLine("Welcome to GameBox");
-            Console.WriteLine("Reading configuration...");
+            Logger.debugInfo("Welcome to GameBox");
+            Logger.debugInfo("Reading configuration...");
             Config.LoadConfig();
 
             DeviceDelegate.create();
+            DeviceDelegate.StaticRun();
 
 //            StaticVBODelegate device = new StaticVBODelegate();
 //            device.Run();
