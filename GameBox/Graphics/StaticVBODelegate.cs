@@ -64,7 +64,6 @@ namespace GameBox.Graphics
             GL.Enable(EnableCap.DepthTest);
 
             vbo[0] = LoadVBO(CubeVertices, CubeElements);
-            vbo[1] = LoadVBO(CubeVertices, CubeElements);
         }
 
         protected override void OnResize(EventArgs e)

@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>GameBox</RootNamespace>
     <AssemblyName>GameBox</AssemblyName>
-    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <SynchReleaseVersion>False</SynchReleaseVersion>
     <StartupObject>GameBox.MainClass</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -32,25 +32,25 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>TRACE;DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <Externalconsole>true</Externalconsole>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <Externalconsole>True</Externalconsole>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <Externalconsole>true</Externalconsole>
+    <Externalconsole>True</Externalconsole>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
@@ -65,34 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\Config.cs" />
-    <Compile Include="Context\GlobalContext.cs" />
-    <Compile Include="Context\MainApp.cs" />
-    <Compile Include="Context\Process.cs" />
-    <Compile Include="Context\ProcessContext.cs" />
-    <Compile Include="Graphics\Nodes\LoaderControllerScene.cs" />
-    <Compile Include="Graphics\Nodes\SceneManager.cs" />
-    <Compile Include="Graphics\Nodes\SceneNode.cs" />
-    <Compile Include="Resources\BackgroudLoader.cs" />
-    <Compile Include="Graphics\DeviceDelegate.cs" />
-    <Compile Include="Graphics\DeviceExample.cs" />
-    <Compile Include="Graphics\Node.cs" />
-    <Compile Include="Graphics\Nodes\Scene.cs" />
     <Compile Include="Graphics\StaticVBODelegate.cs" />
-    <Compile Include="Graphics\Types\GBProperties.cs" />
-    <Compile Include="Graphics\Types\GBFile.cs" />
-    <Compile Include="Graphics\Types\IConvertibleFromGBProperties.cs" />
-    <Compile Include="Graphics\VBO.cs" />
-    <Compile Include="Graphics\VBODefinitions.cs" />
     <Compile Include="Graphics\VertexPositionColor.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="ObjectSerialization\NodeData.cs" />
-    <Compile Include="Resources\Resource.cs" />
-    <Compile Include="Services\FileManager.cs" />
     <Compile Include="Services\Logger.cs" />
-    <Compile Include="Services\GBException.cs" />
-    <Compile Include="Services\LogicController.cs" />
+    <Compile Include="Graphics\DeviceDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
