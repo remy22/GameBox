@@ -9,6 +9,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Platform;
 using System.Drawing;
+using GameBox.Graphics.VBODefinitions;
 
 namespace GameBox.Graphics
 {
@@ -23,6 +24,9 @@ namespace GameBox.Graphics
             this.VSync = VSyncMode.Off;
         }
 
+		VBOData cvbo = new CubeVBO();
+		VBO cdvbo = new VBO();
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -34,8 +38,7 @@ namespace GameBox.Graphics
             {
                 this.Exit();
             }
-
-			VBOCreator.Init();
+			VBOData.CreateVBO(ref cvbo, ref cdvbo);
 			Texture.Init();
             Texture.createTexture("brick.jpg", "brick");
             GL.ClearColor(System.Drawing.Color.MidnightBlue);
@@ -81,15 +84,15 @@ namespace GameBox.Graphics
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-//            Matrix4 lookat = Matrix4.LookAt(0, 5, 5, 0, 0, 0, 0, 1, 0);
-            Matrix4 lookat = Matrix4.LookAt(0, 0, 5, 0, 0, 0, 0, 1, 0);
+            Matrix4 lookat = Matrix4.LookAt(0, 5, 5, 0, 0, 0, 0, 1, 0);
+//            Matrix4 lookat = Matrix4.LookAt(0, 0, 5, 0, 0, 0, 0, 1, 0);
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadMatrix(ref lookat);
 
-//            angle += rotation_speed * (float)e.Time;
-//            GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
+            angle += rotation_speed * (float)e.Time;
+            GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
 
-			VBOCreator.getVbo(VBOCreator.VBOType.Cube).Draw();
+			cvbo.DrawVBO(ref cdvbo, 1);
 
             SwapBuffers();
         }

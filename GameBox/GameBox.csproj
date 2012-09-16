@@ -65,18 +65,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphics\StaticVBODelegate.cs" />
-    <Compile Include="Graphics\VertexPositionColor.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Services\Logger.cs" />
     <Compile Include="Graphics\DeviceDelegate.cs" />
-    <Compile Include="Graphics\Vbo.cs" />
-    <Compile Include="Graphics\VBOCreator.cs" />
     <Compile Include="Graphics\Texture.cs" />
+    <Compile Include="Graphics\VBODefinitions\CubeVBO.cs" />
+    <Compile Include="Graphics\VBODefinitions\VBOData.cs" />
+    <Compile Include="Graphics\VBODefinitions\VBO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Graphics\VBODefinitions\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
