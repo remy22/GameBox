@@ -18,7 +18,6 @@ namespace GameBox.Graphics
         const float rotation_speed = 180.0f;
         float angle;
         
-        struct Vbo { public int VboID, EboID, NumElements; }
         Vbo[] vbo = new Vbo[1];
         
         VertexPositionColor[] CubeVertices = new VertexPositionColor[]

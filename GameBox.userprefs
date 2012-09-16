@@ -1,10 +1,13 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\Resources\BackgroudLoader.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\Graphics\Vbo.cs">
     <Files>
-      <File FileName="GameBox\AssemblyInfo.cs" Line="1" Column="1" />
-      <File FileName="GameBox\Main.cs" Line="1" Column="1" />
-      <File FileName="GameBox\Resources\BackgroudLoader.cs" Line="46" Column="1" />
+      <File FileName="GameBox\Main.cs" Line="13" Column="46" />
+      <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Graphics\DeviceDelegate.cs" Line="1" Column="1" />
+      <File FileName="GameBox\Graphics\Vbo.cs" Line="36" Column="4" />
+      <File FileName="GameBox\Graphics\Texture.cs" Line="32" Column="20" />
+      <File FileName="GameBox\Graphics\VBOCreator.cs" Line="9" Column="78" />
+      <File FileName="GameBox\Graphics\VertexPositionColor.cs" Line="24" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -71,6 +71,9 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Services\Logger.cs" />
     <Compile Include="Graphics\DeviceDelegate.cs" />
+    <Compile Include="Graphics\Vbo.cs" />
+    <Compile Include="Graphics\VBOCreator.cs" />
+    <Compile Include="Graphics\Texture.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
