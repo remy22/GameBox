@@ -25,7 +25,6 @@ namespace GameBox.Graphics
         }
 
 		VBOData cvbo = new CubeVBO();
-		VBO cdvbo = new VBO();
 
         protected override void OnLoad(EventArgs e)
         {
@@ -38,7 +37,7 @@ namespace GameBox.Graphics
             {
                 this.Exit();
             }
-			VBOData.CreateVBO(ref cvbo, ref cdvbo);
+			cvbo.CreateVBO();
 			Texture.Init();
             Texture.createTexture("brick.jpg", "brick");
             GL.ClearColor(System.Drawing.Color.MidnightBlue);
@@ -92,7 +91,7 @@ namespace GameBox.Graphics
             angle += rotation_speed * (float)e.Time;
             GL.Rotate(angle, 0.0f, 1.0f, 0.0f);
 
-			cvbo.DrawVBO(ref cdvbo, 1);
+			cvbo.DrawVBO(1);
 
             SwapBuffers();
         }

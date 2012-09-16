@@ -72,7 +72,6 @@
     <Compile Include="Graphics\Texture.cs" />
     <Compile Include="Graphics\VBODefinitions\CubeVBO.cs" />
     <Compile Include="Graphics\VBODefinitions\VBOData.cs" />
-    <Compile Include="Graphics\VBODefinitions\VBO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
