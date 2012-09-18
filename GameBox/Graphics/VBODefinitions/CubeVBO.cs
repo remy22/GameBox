@@ -124,6 +124,22 @@ namespace GameBox.Graphics.VBODefinitions
 				23, 22, 21, 21, 20, 23,
 			};
 
+			// Element Indices for the Cube
+			ColorData = new uint[] { 
+				// Font face
+				0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 
+				// Right face
+				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+				// Back face
+				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+				// Left face
+				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+				// Top Face	
+				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+				// Bottom Face
+				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+			};
+
 		}
 	}
 }

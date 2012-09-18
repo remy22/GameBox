@@ -8,11 +8,13 @@ namespace GameBox.Graphics.VBODefinitions
 	public class VBOData
 	{
 		protected float[] VertexData;
+		protected uint[]  ColorData;
 		protected float[] NormalData;
 		protected float[] TextureData;
 		protected uint[] IndicesData;
 		
 		private int VertexBufferID;
+		private int ColorBufferID;
 		private int NormalBufferID;
 		private int IndiciesBufferID;
 		private int TextureBufferID;
@@ -23,6 +25,13 @@ namespace GameBox.Graphics.VBODefinitions
 			NormalData = null;
 			TextureData = null;
 			IndicesData = null;
+			ColorData = null;
+			VertexBufferID = 0;
+			ColorBufferID = 0;
+			NormalBufferID = 0;
+			IndiciesBufferID = 0;
+			TextureBufferID = 0;
+			ElementCount = 0;
 		}
 
 		public void CreateVBO() {
@@ -60,7 +69,8 @@ namespace GameBox.Graphics.VBODefinitions
 			{
 				GL.GenBuffers (1, out VertexBufferID);
 				GL.BindBuffer (BufferTarget.ArrayBuffer, VertexBufferID);
-				GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr)(VertexData.Length * sizeof(float)), VertexData, BufferUsageHint.DynamicDraw);
+				GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr)(VertexData.Length * sizeof(float)), VertexData, 
+				               BufferUsageHint.DynamicDraw);
 				GL.GetBufferParameter (BufferTarget.ArrayBuffer, BufferParameterName.BufferSize, out bufferSize);
 				if (VertexData.Length * sizeof(float) != bufferSize)
 					throw new ApplicationException ("Vertex array not uploaded correctly");
@@ -68,7 +78,22 @@ namespace GameBox.Graphics.VBODefinitions
 				// Clear the buffer Binding
 				GL.BindBuffer (BufferTarget.ArrayBuffer, 0);
 			}
-			
+
+			// Color Array Buffer
+			if (ColorData != null)
+			{
+				GL.GenBuffers (1, out ColorBufferID);
+				GL.BindBuffer (BufferTarget.ArrayBuffer, ColorBufferID);
+				GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr)(ColorData.Length * sizeof(uint)), ColorData, 
+				               BufferUsageHint.DynamicDraw);
+				GL.GetBufferParameter (BufferTarget.ArrayBuffer, BufferParameterName.BufferSize, out bufferSize);
+				if (ColorData.Length * sizeof(float) != bufferSize)
+					throw new ApplicationException ("Color array not uploaded correctly");
+				
+				// Clear the buffer Binding
+				GL.BindBuffer (BufferTarget.ArrayBuffer, 0);
+			}
+
 			// Element Array Buffer
 			{
 				GL.GenBuffers (1, out IndiciesBufferID);
@@ -106,6 +131,14 @@ namespace GameBox.Graphics.VBODefinitions
 				GL.VertexPointer (3, VertexPointerType.Float, sizeof(float)*3, IntPtr.Zero);
 				GL.EnableClientState (ArrayCap.VertexArray);
 			}
+
+			if (ColorBufferID != 0)
+			{
+				GL.BindBuffer (BufferTarget.ArrayBuffer, ColorBufferID);
+				GL.ColorPointer(4, ColorPointerType.UnsignedByte, sizeof(uint), IntPtr.Zero);
+				GL.EnableClientState (ArrayCap.ColorArray);
+			}
+
 			
 			// Element Array Buffer
 			{
