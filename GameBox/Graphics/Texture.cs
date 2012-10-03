@@ -32,6 +32,11 @@ namespace GameBox.Graphics
 			textures = null;
 		}
 
+        internal int TextureID
+        {
+            get { return texture; }
+        }
+
         internal static void createTexture(string file, string id)
         {
             Texture t = new Texture(file, id);

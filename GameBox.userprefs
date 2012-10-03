@@ -1,9 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\Graphics\VBODefinitions\VBOData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Graphics\DeviceDelegate.cs">
     <Files>
       <File FileName="GameBox\Main.cs" Line="13" Column="46" />
-      <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Graphics\DeviceDelegate.cs" Line="94" Column="17" />
+      <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Graphics\DeviceDelegate.cs" Line="93" Column="4" />
       <File FileName="GameBox\Graphics\Texture.cs" Line="32" Column="20" />
       <File FileName="GameBox\Graphics\VBODefinitions\CubeVBO.cs" Line="141" Column="1" />
       <File FileName="GameBox\Graphics\VBODefinitions\VBOData.cs" Line="85" Column="5" />

@@ -65,17 +65,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphics\Scenes\Camera.cs" />
+    <Compile Include="Graphics\Scenes\INamerable.cs" />
+    <Compile Include="Graphics\Scenes\IRenderizable.cs" />
+    <Compile Include="Graphics\Scenes\Scene.cs" />
+    <Compile Include="Graphics\Scenes\Shape.cs" />
+    <Compile Include="Graphics\Scenes\Transformation.cs" />
+    <Compile Include="Graphics\Scenes\SceneManager.cs" />
+    <Compile Include="Graphics\VBODefinitions\PlaneVBO.cs" />
+    <Compile Include="Graphics\VBODefinitions\VBODrawProperties.cs" />
+    <Compile Include="Graphics\VBODefinitions\VBOManager.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Services\Logger.cs" />
-    <Compile Include="Graphics\DeviceDelegate.cs" />
+    <Compile Include="Graphics\Window.cs" />
     <Compile Include="Graphics\Texture.cs" />
     <Compile Include="Graphics\VBODefinitions\CubeVBO.cs" />
     <Compile Include="Graphics\VBODefinitions\VBOData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="Graphics\VBODefinitions\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

@@ -2,12 +2,12 @@ using System;
 
 namespace GameBox.Graphics.VBODefinitions
 {
-	public class CubeVBO : VBOData
+	internal class CubeVBO : VBOData
 	{
-		public CubeVBO ()
+		internal CubeVBO () : base()
 		{
 			// Vertex Data
-			VertexData = new float[] { 
+			VertexData = new float[] {
 				// Front face
 				-1.0f, -1.0f, 1.0f, 
 				1.0f, -1.0f, 1.0f, 
@@ -129,17 +129,16 @@ namespace GameBox.Graphics.VBODefinitions
 				// Font face
 				0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 
 				// Right face
-				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+				0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 
 				// Back face
-				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+				0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 
 				// Left face
-				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+				0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 
 				// Top Face	
-				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+				0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 
 				// Bottom Face
-				0x00000000, 0x00000000, 0x00000000, 0x00000000, 
+				0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 
 			};
-
 		}
 	}
 }

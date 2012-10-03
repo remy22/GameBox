@@ -32,6 +32,7 @@ namespace GameBox.Graphics.VBODefinitions
 			IndiciesBufferID = 0;
 			TextureBufferID = 0;
 			ElementCount = 0;
+
 		}
 
 		public void CreateVBO() {
@@ -84,8 +85,7 @@ namespace GameBox.Graphics.VBODefinitions
 			{
 				GL.GenBuffers (1, out ColorBufferID);
 				GL.BindBuffer (BufferTarget.ArrayBuffer, ColorBufferID);
-				GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr)(ColorData.Length * sizeof(uint)), ColorData, 
-				               BufferUsageHint.DynamicDraw);
+				GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr)(ColorData.Length * sizeof(uint)), ColorData, BufferUsageHint.DynamicDraw);
 				GL.GetBufferParameter (BufferTarget.ArrayBuffer, BufferParameterName.BufferSize, out bufferSize);
 				if (ColorData.Length * sizeof(float) != bufferSize)
 					throw new ApplicationException ("Color array not uploaded correctly");
@@ -110,43 +110,44 @@ namespace GameBox.Graphics.VBODefinitions
 			ElementCount = IndicesData.Length;
 		}
 
-		public void DrawVBO (int textureID)
+		internal void DrawVBO (VBODrawProperties vboProperties)
 		{
 			if(VertexBufferID == 0 || IndiciesBufferID == 0)
 				return;
-			
-			GL.Enable(EnableCap.Texture2D);
-			GL.BindTexture(TextureTarget.Texture2D, textureID);
-			
-			if(TextureBufferID != 0)
-			{
+
+            if (vboProperties.DrawTexture && vboProperties.texture.TextureID > 0 && TextureBufferID > 0)
+            {
+                GL.Enable(EnableCap.Texture2D);
+                GL.BindTexture(TextureTarget.Texture2D, vboProperties.texture.TextureID);
+
 				GL.BindBuffer(BufferTarget.ArrayBuffer, TextureBufferID);
 				GL.TexCoordPointer(2, TexCoordPointerType.Float, sizeof(float)*2, IntPtr.Zero);
 				GL.EnableClientState(ArrayCap.TextureCoordArray);
 			}
-			
-			// Vertex Array Buffer
-			{
-				GL.BindBuffer (BufferTarget.ArrayBuffer, VertexBufferID);
-				GL.VertexPointer (3, VertexPointerType.Float, sizeof(float)*3, IntPtr.Zero);
-				GL.EnableClientState (ArrayCap.VertexArray);
-			}
 
-			if (ColorBufferID != 0)
-			{
-				GL.BindBuffer (BufferTarget.ArrayBuffer, ColorBufferID);
-				GL.ColorPointer(4, ColorPointerType.UnsignedByte, sizeof(uint), IntPtr.Zero);
-				GL.EnableClientState (ArrayCap.ColorArray);
-			}
+            // Vertex Array Buffer
+            {
+                GL.EnableClientState(ArrayCap.VertexArray);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferID);
+                GL.VertexPointer(3, VertexPointerType.Float, sizeof(float) * 3, IntPtr.Zero);
+            }
 
-			
-			// Element Array Buffer
-			{
-				GL.BindBuffer (BufferTarget.ElementArrayBuffer, IndiciesBufferID);
-				GL.DrawElements (BeginMode.Triangles, ElementCount, DrawElementsType.UnsignedInt, IntPtr.Zero);
-			}
-			GL.Disable(EnableCap.Texture2D);
-		}
+            if (ColorBufferID > 0 && vboProperties.DrawColors)
+            {
+                GL.EnableClientState(ArrayCap.ColorArray);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, ColorBufferID);
+                GL.ColorPointer(4, ColorPointerType.UnsignedByte, sizeof(uint), IntPtr.Zero);
+            }
+
+
+            // Element Array Buffer
+            {
+                GL.EnableClientState(ArrayCap.IndexArray);
+                GL.BindBuffer(BufferTarget.ElementArrayBuffer, IndiciesBufferID);
+                GL.DrawElements(BeginMode.Triangles, ElementCount, DrawElementsType.UnsignedInt, IntPtr.Zero);
+            }
+
+            GL.Disable(EnableCap.Texture2D);
+        }
 	}
 }
-
