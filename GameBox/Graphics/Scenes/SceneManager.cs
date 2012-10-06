@@ -18,6 +18,15 @@ namespace GameBox.Graphics.Scenes
         {
             get { return parent; }
         }
+
+        internal void Resize()
+        {
+            foreach (Scene s in scenes)
+            {
+                s.Resize();
+            }
+        }
+
         public void Render()
         {
 
@@ -30,7 +39,7 @@ namespace GameBox.Graphics.Scenes
 
         public Scene newScene(string name_)
         {
-            Scene ns = new Scene();
+            Scene ns = new Scene(this);
             ns.Name = name_;
             scenes.Add(ns);
             return ns;

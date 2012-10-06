@@ -10,7 +10,7 @@ namespace GameBox
 		{
             Logger.debugInfo("Welcome to GameBox");
 
-			DeviceDelegate device = new DeviceDelegate();
+			Window device = new Window();
             device.Run();
         }
 	}

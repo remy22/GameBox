@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GameBox.Graphics.Scenes
 {
-    class Scene : INamerable, IRenderizable
+    public class Scene : INamerable, IRenderizable
     {
         private Camera cam;
         private string name;
@@ -19,6 +19,11 @@ namespace GameBox.Graphics.Scenes
         internal Window window
         {
             get { return parent.window; }
+        }
+
+        internal void Resize()
+        {
+            cam.Resize();
         }
 
         public string Name

@@ -54,13 +54,13 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="QuickFont">
+      <HintPath>..\ext\QuickFont\QuickFont\bin\Release\QuickFont.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="OpenTK">
       <HintPath>OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK.GLControl">
-      <HintPath>OpenTK.GLControl.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -69,6 +69,7 @@
     <Compile Include="Graphics\Scenes\INamerable.cs" />
     <Compile Include="Graphics\Scenes\IRenderizable.cs" />
     <Compile Include="Graphics\Scenes\Scene.cs" />
+    <Compile Include="Graphics\Scenes\RenderNode.cs" />
     <Compile Include="Graphics\Scenes\Shape.cs" />
     <Compile Include="Graphics\Scenes\Transformation.cs" />
     <Compile Include="Graphics\Scenes\SceneManager.cs" />
@@ -107,6 +108,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

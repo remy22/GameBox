@@ -1,7 +1,7 @@
 ﻿
 namespace GameBox.Graphics.Scenes
 {
-    internal interface IRenderizable
+    public interface IRenderizable
     {
         void Render();
     }

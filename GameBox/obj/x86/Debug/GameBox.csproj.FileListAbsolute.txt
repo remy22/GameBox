@@ -4,4 +4,5 @@ C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Debug\GameBox.ex
 C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Debug\GameBox.pdb
 C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Debug\GameBox.csprojResolveAssemblyReference.cache
 C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Debug\OpenTK.dll
-C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Debug\OpenTK.GLControl.dll
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Debug\QuickFont.dll
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Debug\QuickFont.pdb

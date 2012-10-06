@@ -1,45 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using GameBox.Graphics.VBODefinitions;
+﻿using GameBox.Graphics.VBODefinitions;
+using System;
 
 namespace GameBox.Graphics.Scenes
 {
-    public class Shape : INamerable, IRenderizable
+    class Shape : RenderNode
     {
-        private string name;
-        VBOData vbo = null;
-        private List<Shape> children = new List<Shape>();
-        private IRenderizable parent = null;
-        private Camera cameraParent = null;
+        private VBOData vbo = null;
         private VBODrawProperties vboDrawProperties = new VBODrawProperties();
 
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        public virtual void Render()
+        public override void RenderInternal()
         {
             if (vbo != null)
             {
                 vbo.DrawVBO(vboDrawProperties);
             }
-
-            foreach (Shape s in children)
-            {
-                s.Render();
-            }
         }
 
-        internal Shape createCube(string name_ = "")
-        {
-            Shape t = Shape.createCube(cameraParent, this, name_);
-            children.Add(t);
-            return t;
-        }
-
-        internal static Shape createCube(Camera parentCamera, IRenderizable parent, string name_ = "")
+        internal static RenderNode createCube(Camera parentCamera, IRenderizable parent, string name_ = "")
         {
             Shape shape = new Shape();
             shape.vbo = VBOManager.getVBO(VBOManager.VBOType.Cube);
@@ -48,5 +25,6 @@ namespace GameBox.Graphics.Scenes
             shape.cameraParent = parentCamera;
             return shape;
         }
+
     }
 }
