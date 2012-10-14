@@ -140,6 +140,16 @@ namespace GameBox.Graphics.VBODefinitions
 				0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 
 			};
 		}
+
+        internal override int NumFaces
+        {
+            get { return 6; }
+        }
+
+        internal override int GetVertexInFace(int nFace)
+        {
+            return 4;
+        }
+
 	}
 }
-

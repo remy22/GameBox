@@ -3,13 +3,15 @@ using System.Drawing;
 using OpenTK.Graphics.OpenGL;
 using System.Drawing.Imaging;
 using System.Collections.Generic;
+using OpenTK.Graphics;
 
 namespace GameBox.Graphics
 {
 	internal class Texture : IDisposable
 	{
-		private int texture = -1;
-		private string idTexture;
+		protected int texture = -1;
+        protected string idTexture;
+        protected bool disposed = false;
 
 		private static List<Texture> textures = null;
 
@@ -22,10 +24,7 @@ namespace GameBox.Graphics
 		{
 			foreach (Texture t in textures)
 			{
-				if (t.isValid())
-				{
-					t.Dispose();
-				}
+				t.Dispose(true);
 			}
 
 			textures.Clear();
@@ -41,6 +40,10 @@ namespace GameBox.Graphics
         {
             Texture t = new Texture(file, id);
             textures.Add(t);
+        }
+
+        internal Texture()
+        {
         }
 
 		private Texture (string file, string id)
@@ -67,17 +70,37 @@ namespace GameBox.Graphics
 			return texture > -1;
 		}
 
-		#region IDisposable implementation
+        void Dispose(bool manual)
+        {
+            if (!disposed)
+            {
+                if (manual)
+                {
+                    textures.Remove(this);
+                    if (GraphicsContext.CurrentContext != null)
+                    {
+               			if (isValid())
+			            {
+				            GL.DeleteTexture(texture);
+			            }
+                    }
+                }
 
-		public void Dispose ()
-		{
-			if (isValid())
-			{
-				GL.DeleteTextures(1, ref texture);
-			}
-		}
+                disposed = true;
+            }
+        }
 
-		#endregion
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+
+        ~Texture()
+        {
+            Console.WriteLine("[Warning] Resource leaked: {0}.", this);
+        }
 	}
 }
 

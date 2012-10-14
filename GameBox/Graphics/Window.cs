@@ -11,6 +11,8 @@ using OpenTK.Platform;
 using System.Drawing;
 using GameBox.Graphics.VBODefinitions;
 using GameBox.Graphics.Scenes;
+using QuickFont;
+using GameBox.Events;
 
 namespace GameBox.Graphics
 {
@@ -31,15 +33,14 @@ namespace GameBox.Graphics
         protected void InitGraphicsModules()
         {
             Texture.Init();
-            //            Texture.createTexture("brick.jpg", "brick");
-            VBOManager.Init();
+//            Texture.createTexture("brick.jpg", "brick");
             scene = sManager.newScene("mainExample");
-            scene.camera.createCube("cube");
+//            scene.camera.createCube("cube");
+            scene.camera.createPlane("plain");
         }
 
         protected void DestroyGraphicsModules()
         {
-//            VBOManager.Delete();
             Texture.Destroy();
         }
 
@@ -61,15 +62,19 @@ namespace GameBox.Graphics
 
             if (Keyboard[OpenTK.Input.Key.Escape])
                 this.Exit();
+
+            UpdateFrameEvent ufe = new UpdateFrameEvent(e, Keyboard);
+            sManager.UpdateFrame(ufe);
         }
 
         private uint frames = 0;
         private double ellapsed = 0.0;
         private double ellapsedOld = 0.0;
         private double fps = 0.0;
+
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-            base.OnRenderFrame(e);
+            //base.OnRenderFrame(e);
             ellapsed += e.Time;
             frames++;
             if (ellapsed - ellapsedOld > 1)

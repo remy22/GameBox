@@ -1,4 +1,6 @@
-﻿using OpenTK.Graphics.OpenGL;
+﻿using GameBox.Events;
+using GameBox.Input;
+using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
 
@@ -25,6 +27,16 @@ namespace GameBox.Graphics.Scenes
             {
                 s.Resize();
             }
+        }
+
+        internal void UpdateFrame(UpdateFrameEvent ufe_)
+        {
+            // TODO: Update only 1 active scene.
+            foreach (Scene s in scenes)
+            {
+                s.UpdateFrame(ufe_);
+            }
+
         }
 
         public void Render()

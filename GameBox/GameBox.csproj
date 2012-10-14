@@ -65,17 +65,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\UpdateFrameEvent.cs" />
     <Compile Include="Graphics\Scenes\Camera.cs" />
+    <Compile Include="Graphics\Scenes\Container2D.cs" />
     <Compile Include="Graphics\Scenes\INamerable.cs" />
     <Compile Include="Graphics\Scenes\IRenderizable.cs" />
     <Compile Include="Graphics\Scenes\Scene.cs" />
     <Compile Include="Graphics\Scenes\RenderNode.cs" />
     <Compile Include="Graphics\Scenes\Shape.cs" />
+    <Compile Include="Graphics\Scenes\Text2D.cs" />
     <Compile Include="Graphics\Scenes\Transformation.cs" />
     <Compile Include="Graphics\Scenes\SceneManager.cs" />
+    <Compile Include="Graphics\TextTexture.cs" />
     <Compile Include="Graphics\VBODefinitions\PlaneVBO.cs" />
     <Compile Include="Graphics\VBODefinitions\VBODrawProperties.cs" />
-    <Compile Include="Graphics\VBODefinitions\VBOManager.cs" />
+    <Compile Include="Input\GBKey.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Services\Logger.cs" />

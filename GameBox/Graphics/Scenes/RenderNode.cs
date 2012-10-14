@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameBox.Graphics.VBODefinitions;
+using GameBox.Events;
 
 namespace GameBox.Graphics.Scenes
 {
@@ -15,6 +16,19 @@ namespace GameBox.Graphics.Scenes
         {
             get { return name; }
             set { name = value; }
+        }
+
+        public virtual void UpdateFrame(UpdateFrameEvent ufe)
+        {
+        }
+
+        internal void UpdateFrameInternal(UpdateFrameEvent ufe)
+        {
+            UpdateFrame(ufe);
+            foreach (RenderNode node in children)
+            {
+                node.UpdateFrame(ufe);
+            }
         }
 
         public virtual void RenderInternal()
@@ -35,12 +49,33 @@ namespace GameBox.Graphics.Scenes
             }
         }
 
-        internal RenderNode createCube(string name_ = "")
+        internal virtual void PreInit()
         {
-            RenderNode t = Shape.createCube(cameraParent, this, name_);
-            children.Add(t);
-            return t;
         }
 
+        internal T createChild<T>(string name_ = "") where T : RenderNode, new()
+        {
+            T newNode = new T();
+            newNode.name = name_;
+            newNode.parent = this;
+            newNode.cameraParent = this.cameraParent;
+            children.Add(newNode);
+            newNode.PreInit();
+            return newNode;
+        }
+
+        internal Shape createCube(string name_ = "")
+        {
+            Shape shape = createChild<Shape>(name_);
+            shape.defineAsCube();
+            return shape;
+        }
+
+        internal Shape createPlane(string name_ = "")
+        {
+            Shape shape = createChild<Shape>(name_);
+            shape.defineAsPlane();
+            return shape;
+        }
     }
 }

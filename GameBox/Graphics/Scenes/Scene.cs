@@ -1,4 +1,5 @@
-﻿using OpenTK.Graphics.OpenGL;
+﻿using GameBox.Events;
+using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
 
@@ -41,6 +42,11 @@ namespace GameBox.Graphics.Scenes
         public Camera camera
         {
             get { return cam; }
+        }
+
+        public void UpdateFrame(UpdateFrameEvent ufe)
+        {
+            cam.UpdateFrameInternal(ufe);
         }
 
         public void Render()

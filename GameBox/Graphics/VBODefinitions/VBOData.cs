@@ -110,15 +110,15 @@ namespace GameBox.Graphics.VBODefinitions
 			ElementCount = IndicesData.Length;
 		}
 
-		internal void DrawVBO (VBODrawProperties vboProperties)
+		internal void DrawVBO (int textureID)
 		{
 			if(VertexBufferID == 0 || IndiciesBufferID == 0)
 				return;
 
-            if (vboProperties.DrawTexture && vboProperties.texture.TextureID > 0 && TextureBufferID > 0)
+            if (textureID > 0 && TextureBufferID > 0)
             {
                 GL.Enable(EnableCap.Texture2D);
-                GL.BindTexture(TextureTarget.Texture2D, vboProperties.texture.TextureID);
+                GL.BindTexture(TextureTarget.Texture2D, textureID);
 
 				GL.BindBuffer(BufferTarget.ArrayBuffer, TextureBufferID);
 				GL.TexCoordPointer(2, TexCoordPointerType.Float, sizeof(float)*2, IntPtr.Zero);
@@ -132,7 +132,7 @@ namespace GameBox.Graphics.VBODefinitions
                 GL.VertexPointer(3, VertexPointerType.Float, sizeof(float) * 3, IntPtr.Zero);
             }
 
-            if (ColorBufferID > 0 && vboProperties.DrawColors)
+            if (ColorBufferID > 0)
             {
                 GL.EnableClientState(ArrayCap.ColorArray);
                 GL.BindBuffer(BufferTarget.ArrayBuffer, ColorBufferID);
@@ -148,6 +148,30 @@ namespace GameBox.Graphics.VBODefinitions
             }
 
             GL.Disable(EnableCap.Texture2D);
+        }
+
+        internal virtual int NumFaces
+        {
+            get { return 0; }
+        }
+
+        internal virtual int GetVertexInFace(int nFace)
+        {
+            return 0;
+        }
+
+        internal void setColorToFace(int face, System.Drawing.Color color)
+        {
+            int index = 0;
+            for (int i = 0; i < face; i++)
+            {
+                index += GetVertexInFace(i);
+            }
+
+            for (int i = 0; i < GetVertexInFace(face); i++)
+            {
+                ColorData[i] = (uint)color.ToArgb();
+            }
         }
 	}
 }
