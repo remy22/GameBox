@@ -3,118 +3,65 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}</ProjectGuid>
+    <ProjectGuid>{6F8DA993-CF97-4A68-AD5D-D1751B62A7AC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>GameBox</RootNamespace>
     <AssemblyName>GameBox</AssemblyName>
-    <SynchReleaseVersion>False</SynchReleaseVersion>
     <StartupObject>GameBox.MainClass</StartupObject>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>TRACE;DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>True</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>True</Externalconsole>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="QuickFont">
-      <HintPath>..\ext\QuickFont\QuickFont\bin\Release\QuickFont.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Drawing" />
     <Reference Include="OpenTK">
-      <HintPath>OpenTK.dll</HintPath>
+      <HintPath>lib\OpenTK.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\UpdateFrameEvent.cs" />
-    <Compile Include="Graphics\Scenes\Camera.cs" />
-    <Compile Include="Graphics\Scenes\Container2D.cs" />
-    <Compile Include="Graphics\Scenes\INamerable.cs" />
-    <Compile Include="Graphics\Scenes\IRenderizable.cs" />
-    <Compile Include="Graphics\Scenes\Scene.cs" />
-    <Compile Include="Graphics\Scenes\RenderNode.cs" />
-    <Compile Include="Graphics\Scenes\Shape.cs" />
-    <Compile Include="Graphics\Scenes\Text2D.cs" />
-    <Compile Include="Graphics\Scenes\Transformation.cs" />
-    <Compile Include="Graphics\Scenes\SceneManager.cs" />
-    <Compile Include="Graphics\TextTexture.cs" />
-    <Compile Include="Graphics\VBODefinitions\PlaneVBO.cs" />
-    <Compile Include="Graphics\VBODefinitions\VBODrawProperties.cs" />
-    <Compile Include="Input\GBKey.cs" />
+    <Compile Include="GBDebug.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Services\Logger.cs" />
-    <Compile Include="Graphics\Window.cs" />
-    <Compile Include="Graphics\Texture.cs" />
-    <Compile Include="Graphics\VBODefinitions\CubeVBO.cs" />
-    <Compile Include="Graphics\VBODefinitions\VBOData.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 %28x86 y x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Compile Include="XMLSerialization\GBXMLContainer.cs" />
+    <Compile Include="FileSystem.cs" />
+    <Compile Include="GBException.cs" />
+    <Compile Include="GBObject.cs" />
+    <Compile Include="GBInfo.cs" />
+    <Compile Include="GBProperties.cs" />
+    <Compile Include="Menu\GBMenu.cs" />
+    <Compile Include="Modules\Module.cs" />
+    <Compile Include="Graphics\SceneManager.cs" />
+    <Compile Include="Graphics\Scene.cs" />
+    <Compile Include="Resources\Resource.cs" />
+    <Compile Include="Resources\Texture.cs" />
+    <Compile Include="GBSystem.cs" />
+    <Compile Include="GBWindow.cs" />
+    <Compile Include="GBStateManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="GBObjects\" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gbmodule ver="1.0">
+	<file>module.dll</file>
+	<scene type="Scene" dimensions="2" >
+		<background type="Sprite">
+			<pos type="Vector3">
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+			</pos>
+		</background>
+	</scene>
+</gbmodule>

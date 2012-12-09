@@ -1,6 +1,4 @@
 using System;
-using GameBox.Graphics;
-using GameBox.Services;
 
 namespace GameBox
 {
@@ -8,10 +6,20 @@ namespace GameBox
 	{
 		public static void Main (string[] args)
 		{
-            Logger.debugInfo("Welcome to GameBox");
+			try
+			{
+				GBInfo.WriteLine("Welcome to GameBox");
+				GBInfo.WriteLine("Reading properties...");
 
-			Window device = new Window();
-            device.Run();
-        }
+				GBSystem.Init();
+				GBSystem.CreateWindow();
+			} catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+            GBDebug.Execute(Console.ReadKey());
+
+		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBox", "GameBox\GameBox.csproj", "{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameBox", "GameBox\GameBox.csproj", "{6F8DA993-CF97-4A68-AD5D-D1751B62A7AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,13 +9,10 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}.Debug|x86.ActiveCfg = Debug|x86
-		{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}.Debug|x86.Build.0 = Debug|x86
-		{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}.Release|x86.ActiveCfg = Release|x86
-		{8687FFAF-4D1C-4F3E-AFBC-75595ADA3FAB}.Release|x86.Build.0 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+		{6F8DA993-CF97-4A68-AD5D-D1751B62A7AC}.Debug|x86.ActiveCfg = Debug|x86
+		{6F8DA993-CF97-4A68-AD5D-D1751B62A7AC}.Debug|x86.Build.0 = Debug|x86
+		{6F8DA993-CF97-4A68-AD5D-D1751B62A7AC}.Release|x86.ActiveCfg = Release|x86
+		{6F8DA993-CF97-4A68-AD5D-D1751B62A7AC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = GameBox\GameBox.csproj

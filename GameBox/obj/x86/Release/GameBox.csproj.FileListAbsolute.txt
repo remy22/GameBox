@@ -1,5 +1,0 @@
-C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Release\GameBox.exe
-C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Release\GameBox.exe
-C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Release\OpenTK.dll
-C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Release\OpenTK.GLControl.dll
-C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Release\GameBox.csprojResolveAssemblyReference.cache
