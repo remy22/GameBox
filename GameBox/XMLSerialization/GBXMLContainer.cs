@@ -14,7 +14,7 @@ namespace GameBox.XMLSerialization
 
 		public static GBXMLContainer LoadOrNull(string file)
 		{
-			if (FileSystem.FileExists(file))
+			if (GBFileSystem.FileExists(file))
 			{
 				return new GBXMLContainer(file);
 			}
@@ -52,11 +52,11 @@ namespace GameBox.XMLSerialization
         {
         }
 
-		public GBXMLContainer (string file):this(FileSystem.GetXMLTextReader(file))
+		public GBXMLContainer (string file):this(GBFileSystem.GetXMLTextReader(file))
 		{
 		}
 
-		public GBXMLContainer (StreamReader stream):this(FileSystem.GetXMLTextReader(stream))
+		public GBXMLContainer (StreamReader stream):this(GBFileSystem.GetXMLTextReader(stream))
 		{
 		}
 

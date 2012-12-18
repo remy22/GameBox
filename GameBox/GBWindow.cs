@@ -38,9 +38,17 @@ namespace GameBox
 			this.baseTitle = baseTitle;
 		}
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            GBSystem.OnLoadWindow(e);
+        }
+
 		protected override void OnUpdateFrame(FrameEventArgs e)
 		{
 			base.OnUpdateFrame(e);
+
+            GBSystem.OnUpdateFrame(e);
 			
 			if (Keyboard[OpenTK.Input.Key.Escape])
 				this.Exit();

@@ -10,7 +10,7 @@ namespace GameBox
 
 		public bool Load(string fileName)
 		{
-			if (FileSystem.FileExists(fileName))
+			if (GBFileSystem.FileExists(fileName))
 			{
 
 			}

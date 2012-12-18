@@ -39,8 +39,5 @@ namespace GameBox
 		{
 			Debug.Assert(condition,obj.ToString());
 		}
-
-
-
     }
 }

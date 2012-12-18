@@ -7,7 +7,9 @@ namespace GameBox
 	{
 		public enum Reason
 		{
-			XMLReading
+			XMLReading,
+            UnableToLoadModule,
+            FileNotFound
 		}
 
 		public GBException (Reason reason)
@@ -15,7 +17,14 @@ namespace GameBox
 			Debug.Write("GBException: "+reason.ToString());
 		}
 
-		public GBException(Exception e):base(e.Message)
+        public GBException(Reason reason, Exception e)
+            : base(e.Message)
+        {
+
+        }
+
+		public GBException(Exception e)
+            : base(e.Message)
 		{
 
 		}

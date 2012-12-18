@@ -12,7 +12,6 @@ namespace GameBox
 				GBInfo.WriteLine("Reading properties...");
 
 				GBSystem.Init();
-				GBSystem.CreateWindow();
 			} catch (Exception e)
 			{
 				Console.WriteLine(e);
