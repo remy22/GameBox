@@ -1,6 +1,7 @@
 using System;
 using OpenTK;
 using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL;
 
 namespace GameBox
 {
@@ -64,6 +65,13 @@ namespace GameBox
 
 		}
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            GL.Viewport(0, 0, Width, Height);
+            GBSystem.OnResize(e);
+        }
+
 		private uint frames = 0;
 		private double ellapsed = 0.0;
 		private double ellapsedOld = 0.0;
@@ -80,6 +88,8 @@ namespace GameBox
 				ellapsedOld = ellapsed;
 				Title = baseTitle + " Ellapsed now: " + e.Time + "FPS: " + 1.0 / e.Time;
 			}
+
+            GBSystem.OnRenderFrame(e);
 			
 			SwapBuffers();
 		}

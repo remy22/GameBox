@@ -8,7 +8,6 @@ namespace GameBox
 	public static class GBSystem
 	{
         private static GBWindow window = null;
-        private static ProcessManager pManager = null;
         private static GBXMLContainer modulesXMLData = null;
 
         internal static void Init()
@@ -16,7 +15,6 @@ namespace GameBox
             GBProperties.Init();
             GBInfo.WriteLine("Creating OpenGL window...");
 			window = GBWindow.CreateFromProperties();
-            pManager = new ProcessManager();
             window.Run();
 		}
 
@@ -45,19 +43,29 @@ namespace GameBox
         static void LoadModules()
         {
             GBInfo.WriteLine("Loading modules...");
-            pManager.Load("../../../Brocker/bin/Debug", "Brocker.exe");
+            ProcessManager.Load("../../../Brocker/bin/Debug", "Brocker");
         }
 
         internal static void OnLoadWindow(EventArgs e)
         {
             GBInfo.WriteLine("Loading window...");
             LoadModules();
-            pManager.Start();
+            ProcessManager.Start();
         }
 
         internal static void OnUpdateFrame(FrameEventArgs e)
         {
         }
 
+        internal static void OnResize(EventArgs e)
+        {
+            ProcessManager.ActiveProcess.OnResize(e);
+        }
+
+        internal static void OnRenderFrame(FrameEventArgs e)
+        {
+            ProcessManager.ActiveProcess.OnRenderFrame(e);
+
+        }
 	}
 }

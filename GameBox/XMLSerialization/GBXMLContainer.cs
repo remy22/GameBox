@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Xml;
 using System.IO;
 using System;
+using System.Drawing;
 
 namespace GameBox.XMLSerialization
 {
@@ -41,7 +42,7 @@ namespace GameBox.XMLSerialization
 
 			textValue = other.textValue;
 
-			foreach (GBXMLContainer ch in children)
+			foreach (GBXMLContainer ch in other.children)
 			{
 				children.Add(new GBXMLContainer(ch));
 			}
@@ -104,6 +105,12 @@ namespace GameBox.XMLSerialization
 		{
 			get { return textValue; }
 		}
+
+        public string Name
+        {
+            get { return name; }
+        }
+
 		public override string ToString ()
 		{
 			return GetAsString(0);
@@ -143,6 +150,11 @@ namespace GameBox.XMLSerialization
 			return result;
 		}
 
+        public IEnumerable<GBXMLContainer> Children
+        {
+            get { return children; }
+        }
+
 		#region ICloneable implementation
 
 		public object Clone ()
@@ -170,6 +182,22 @@ namespace GameBox.XMLSerialization
 				return def;
 			}
 		}
+
+        public static RectangleF ReadRectangleF(GBXMLContainer stream)
+        {
+            return new RectangleF(
+                new PointF
+                    (
+                        float.Parse(stream["Position"]["X", "0"].Text),
+                        float.Parse(stream["Position"]["Y", "0"].Text)
+                    ),
+                new SizeF
+                    (
+                        float.Parse(stream["Length"]["W", "0"].Text),
+                        float.Parse(stream["Length"]["H", "0"].Text)
+                    )
+                );
+        }
 	}
 }
 

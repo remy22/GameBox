@@ -42,19 +42,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GBDebug.cs" />
+    <Compile Include="Graphics\Nodes\Image.cs" />
+    <Compile Include="Graphics\Nodes\Text.cs" />
+    <Compile Include="Graphics\Nodes\TextureDrawer.cs" />
+    <Compile Include="Graphics\RenderingContext.cs" />
+    <Compile Include="Graphics\RenderNode.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Processes\GBProcess.cs" />
     <Compile Include="Processes\Process.cs" />
     <Compile Include="Processes\ProcessManager.cs" />
+    <Compile Include="Resources\GBFont.cs" />
+    <Compile Include="Resources\Resource.cs" />
     <Compile Include="XMLSerialization\GBXMLContainer.cs" />
     <Compile Include="GBFileSystem.cs" />
     <Compile Include="GBException.cs" />
     <Compile Include="GBInfo.cs" />
     <Compile Include="GBProperties.cs" />
-    <Compile Include="Graphics\SceneManager.cs" />
     <Compile Include="Graphics\Scene.cs" />
-    <Compile Include="Resources\Resource.cs" />
     <Compile Include="Resources\Texture.cs" />
     <Compile Include="GBSystem.cs" />
     <Compile Include="GBWindow.cs" />

@@ -3,16 +3,12 @@ using System.Collections.Generic;
 
 namespace GameBox.Processes
 {
-    class ProcessManager
+    static class ProcessManager
     {
-        private List<Process> processes = new List<Process>();
-        private Process activeProcess = null;
+        private static List<Process> processes = new List<Process>();
+        private static Process activeProcess = null;
 
-        public ProcessManager()
-        {
-        }
-
-        public void Load(string dir_, string fileName_)
+        public static void Load(string dir_, string fileName_)
         {
             try
             {
@@ -22,6 +18,7 @@ namespace GameBox.Processes
                 if (isValid)
                 {
                     processes.Add(p);
+                    p.ReadScenesData();
                     GBInfo.WriteLine("Module " + fileName_ + " loaded successfully");
                 }
             }
@@ -35,7 +32,7 @@ namespace GameBox.Processes
             }
         }
 
-        internal void ActivateFirstProcess()
+        internal static void ActivateFirstProcess()
         {
             if (activeProcess == null && processes.Count > 0)
             {
@@ -51,13 +48,18 @@ namespace GameBox.Processes
             }
         }
 
-        internal void Start()
+        internal static void Start()
         {
             ActivateFirstProcess();
             if (activeProcess != null)
             {
                 activeProcess.Start();
             }
+        }
+
+        internal static Process ActiveProcess
+        {
+            get { return activeProcess; }
         }
     }
 }
