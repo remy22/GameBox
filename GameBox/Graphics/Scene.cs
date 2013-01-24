@@ -4,6 +4,8 @@ using GameBox.Resources;
 using System.Collections.Generic;
 using GameBox.Processes;
 using OpenTK.Graphics.OpenGL;
+using System.Drawing;
+using OpenTK;
 
 namespace GameBox.Graphics
 {
@@ -12,16 +14,16 @@ namespace GameBox.Graphics
         private List<string> resourceList = new List<string>();
         private bool isFirst = false;
         protected Process parentProcess = null;
-        private RenderingContext rContext = null;
+        protected SizeF size;
 
 		public Scene (GBXMLContainer data, Process parentProcess_) : base(data, null)
 		{
             parentProcess = parentProcess_;
+            size = GBXMLContainer.ReadSizeF(InitData);
             isFirst = bool.Parse(InitData["IsFirst",bool.FalseString].Text);
 
             LoadResourceInfo();
-            rContext = new RenderingContext();
-            rContext.RenderingScene = this;
+            RenderingContext.RenderingScene = this;
 		}
 
         public bool IsFirst { get { return isFirst; } }
@@ -30,7 +32,7 @@ namespace GameBox.Graphics
         {
             foreach (string resString in resourceList)
             {
-                Resource res = Resource.GetResource(resString);
+                Resource res = ProcessManager.ActiveProcess.rManager.GetResource(resString);
                 GBDebug.WriteLineIf(res.Loaded, "Resource " + res + "(" + res.FileName + ") already loaded.");
 
                 if (!res.Loaded)
@@ -50,7 +52,8 @@ namespace GameBox.Graphics
                 string type = resource["Type"].Text;
                 string fileName = resource["FileName"].Text;
                 Type chType = Type.GetType("GameBox.Resources." + type);
-                Resource newResource = Resource.GetOrCreateResource(chType, nodeName, fileName);
+                Resource newResource = ProcessManager.ActiveProcess.rManager.GetOrCreateResource(chType, nodeName, fileName);
+                newResource.InitData = (GBXMLContainer)resource.Clone();
                 resourceList.Add(nodeName);
             }
         }
@@ -63,30 +66,37 @@ namespace GameBox.Graphics
 
         public uint StartFrame()
         {
-            return Render(rContext);
+            return Render();
         }
 
-        public override uint Render(RenderingContext rContext)
+        public override uint Render()
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadIdentity();
 
-            rContext.RenderingScene = this;
+            RenderingContext.RenderingScene = this;
 
-            return base.Render(rContext);
+            uint cont = base.Render();
+
+            RenderingContext.RenderingScene = null;
+            return cont;
+
         }
 
         internal void SetProjection()
         {
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
-//            GL.Ortho(0.0, boundingBox.Width, 0.0, boundingBox.Height, -1.0, 1.0);
-            GL.Ortho(0.0, boundingBox.Width, boundingBox.Height, 0.0, -1.0, 1.0);
+            GL.Ortho(
+                position.X - (size.Width / 2),
+                (size.Width / 2),
+                position.Y - (size.Height / 2),
+                (size.Height / 2),
+                -1.0, 
+                1.0);
             GL.MatrixMode(MatrixMode.Modelview);
-
         }
 	}
 }
-

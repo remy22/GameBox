@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using OpenTK;
 
 namespace GameBox.Processes
 {
@@ -18,7 +19,9 @@ namespace GameBox.Processes
                 if (isValid)
                 {
                     processes.Add(p);
+                    activeProcess = p;
                     p.ReadScenesData();
+                    activeProcess = null;
                     GBInfo.WriteLine("Module " + fileName_ + " loaded successfully");
                 }
             }
@@ -34,16 +37,11 @@ namespace GameBox.Processes
 
         internal static void ActivateFirstProcess()
         {
-            if (activeProcess == null && processes.Count > 0)
-            {
+            if (activeProcess == null && processes.Count > 0) {
                 activeProcess = processes[0];
-            }
-            else if (activeProcess != null)
-            {
+            } else if (activeProcess != null) {
                 GBDebug.WriteLine("There is an active process already");
-            }
-            else
-            {
+            } else {
                 GBDebug.WriteLine("There is no processes on que list");
             }
         }
@@ -51,15 +49,29 @@ namespace GameBox.Processes
         internal static void Start()
         {
             ActivateFirstProcess();
-            if (activeProcess != null)
-            {
+            if (activeProcess != null) {
                 activeProcess.Start();
             }
         }
 
-        internal static Process ActiveProcess
-        {
+        internal static Process ActiveProcess {
             get { return activeProcess; }
+        }
+
+        internal static void OnUpdateFrame(FrameEventArgs e) {
+        }
+
+        internal static void OnResize(EventArgs e) {
+            activeProcess.OnResize(e);
+        }
+
+        internal static void OnRenderFrame(FrameEventArgs e) {
+            activeProcess.OnRenderFrame(e);
+        }
+
+        internal static void FinishProcess()
+        {
+
         }
     }
 }

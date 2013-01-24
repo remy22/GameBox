@@ -175,7 +175,7 @@ namespace GameBox.XMLSerialization
 				}
 
 				// Do not return null objects to avoid crashes.
-				GBDebug.Warning("Warning. Returning notFound (" + notFound + ") field for field: "+field);
+//				GBDebug.Warning("Warning. Returning notFound (" + notFound + ") field for field: "+field);
 				GBXMLContainer def = new GBXMLContainer();
 				def.name = field;
 				def.textValue = notFound;
@@ -183,21 +183,50 @@ namespace GameBox.XMLSerialization
 			}
 		}
 
+        public bool Exists(string field)
+        {
+            foreach (GBXMLContainer cont in children)
+            {
+                if (cont.name == field)
+                    return true;
+            }
+
+            return false;
+        }
+
         public static RectangleF ReadRectangleF(GBXMLContainer stream)
         {
             return new RectangleF(
-                new PointF
-                    (
-                        float.Parse(stream["Position"]["X", "0"].Text),
-                        float.Parse(stream["Position"]["Y", "0"].Text)
-                    ),
-                new SizeF
-                    (
-                        float.Parse(stream["Length"]["W", "0"].Text),
-                        float.Parse(stream["Length"]["H", "0"].Text)
-                    )
-                );
+                ReadPointF(stream),
+                ReadSizeF(stream)
+            );
         }
-	}
+
+        public static PointF ReadPointF(GBXMLContainer stream)
+        {
+            return ReadPointFFrom(stream, "Position");
+        }
+
+        public static SizeF ReadSizeF(GBXMLContainer stream)
+        {
+            return new SizeF(
+                float.Parse(stream["Length"]["Width", "-1.0"].Text),
+                float.Parse(stream["Length"]["Height", "-1.0"].Text)
+            );
+        }
+
+        public static PointF ReadPointFFrom(GBXMLContainer stream, string field)
+        {
+            return new PointF(
+                float.Parse(stream[field]["X", "0.0"].Text),
+                float.Parse(stream[field]["Y", "0.0"].Text)
+            );
+        }
+
+        public static bool FieldExists(GBXMLContainer stream, string field)
+        {
+            return stream.Exists(field);
+        }
+    }
 }
 

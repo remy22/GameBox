@@ -13,6 +13,9 @@ namespace GameBox.Resources
 		private int texture = -1;
         private System.Drawing.Graphics gfx;
 
+        private static Bitmap bmpTmp = null;
+        private static System.Drawing.Graphics gfxTmp = null;
+
 		public Texture (string name_,string fileName_):base(name_,fileName_)
 		{
 		}
@@ -42,12 +45,25 @@ namespace GameBox.Resources
 			}
 		}
 
-        internal Texture(GBFont font, string text, RectangleF boundingBox)
+        internal static SizeF MeasureString(string str, Font f)
         {
-            GBDebug.Assert(boundingBox.Width > 0, "Trying to create texture with width 0");
-            GBDebug.Assert(boundingBox.Height > 0, "Trying to create texture with height 0");
+            if (bmpTmp == null)
+            {
+                bmpTmp = new Bitmap(3200, 2000, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                gfxTmp = System.Drawing.Graphics.FromImage(bmpTmp);
+                gfxTmp.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+            }
 
-            bmp = new Bitmap((int)boundingBox.Width, (int)boundingBox.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            return gfxTmp.MeasureString(str, f);
+        }
+
+        internal Texture(GBFont font, string text, SizeF orSize, bool autoText)
+        {
+            GBDebug.Assert(orSize.Width > 0 || autoText, "Trying to create texture with width 0");
+            GBDebug.Assert(orSize.Height > 0 || autoText, "Trying to create texture with height 0");
+
+            SizeF sz = autoText ? MeasureString(text, font.FontData) : orSize;
+            bmp = new Bitmap((int)sz.Width, (int)sz.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             gfx = System.Drawing.Graphics.FromImage(bmp);
             gfx.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
@@ -55,7 +71,7 @@ namespace GameBox.Resources
             GL.BindTexture(TextureTarget.Texture2D, texture);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
-            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int)boundingBox.Width, (int)boundingBox.Height, 0,
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int)sz.Width, (int)sz.Height, 0,
                 OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, IntPtr.Zero);
 
             DrawString(text, font);
@@ -96,6 +112,11 @@ namespace GameBox.Resources
             get { return bmp != null ? bmp.Height : 0; }
         }
 
+        public Size size
+        {
+            get { return new Size(Width, Height); }
+        }
+
         internal void BindTexture()
         {
             GL.Enable(EnableCap.Texture2D);
@@ -108,4 +129,3 @@ namespace GameBox.Resources
         }
 	}
 }
-

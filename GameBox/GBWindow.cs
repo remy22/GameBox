@@ -2,6 +2,7 @@ using System;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using GameBox.Graphics;
 
 namespace GameBox
 {
@@ -21,7 +22,6 @@ namespace GameBox
 			GBWindow ret = new GBWindow(w, h, gMode, "GameBox");
 			PostProperties(ret);
 			return ret;
-
 		}
 
 		private static void PostProperties (GBWindow ret)
@@ -33,6 +33,7 @@ namespace GameBox
 		}
 
 		private string baseTitle;
+        internal bool ShowBoundingBox = false;
 
 		private GBWindow (int w, int h, GraphicsMode gMode, string baseTitle) : base(w, h, gMode, baseTitle)
 		{
@@ -63,6 +64,11 @@ namespace GameBox
 			if (Keyboard[OpenTK.Input.Key.Number3])
 				this.VSync = VSyncMode.Adaptive;
 
+            if (Keyboard[OpenTK.Input.Key.Number4])
+                RenderingContext.DrawBoundingBox = true;
+
+            if (Keyboard[OpenTK.Input.Key.Number5])
+                RenderingContext.DrawBoundingBox = false;
 		}
 
         protected override void OnResize(EventArgs e)
@@ -72,21 +78,16 @@ namespace GameBox
             GBSystem.OnResize(e);
         }
 
-		private uint frames = 0;
 		private double ellapsed = 0.0;
-		private double ellapsedOld = 0.0;
-		private double fps = 0.0;
 		
 		protected override void OnRenderFrame(FrameEventArgs e)
 		{
 			base.OnRenderFrame(e);
 			ellapsed += e.Time;
-			frames++;
-			if (ellapsed - ellapsedOld > 1)
+			if (ellapsed > 1)
 			{
-				fps = frames / ellapsed;
-				ellapsedOld = ellapsed;
 				Title = baseTitle + " Ellapsed now: " + e.Time + "FPS: " + 1.0 / e.Time;
+                ellapsed = 0;
 			}
 
             GBSystem.OnRenderFrame(e);

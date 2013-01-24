@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using GameBox.XMLSerialization;
 using GameBox.Graphics;
 using OpenTK;
+using GameBox.Resources;
 
 namespace GameBox.Processes
 {
@@ -32,6 +33,9 @@ namespace GameBox.Processes
         private ProcessState prState = ProcessState.NotLoaded;
         private List<Scene> sceneList = new List<Scene>();
         private Scene currentScene = null;
+        private string name = string.Empty;
+
+        internal ResourceManager rManager = new ResourceManager();
 
         public Process()
         {
@@ -40,6 +44,11 @@ namespace GameBox.Processes
         internal string BaseDir
         {
             get { return baseDir; }
+        }
+
+        public string Name
+        {
+            get { return name; }
         }
 
 		public void LoadMetadata(string fileName)
@@ -61,6 +70,7 @@ namespace GameBox.Processes
         public void LoadModuleFromFile(string fileName)
         {
             GBDebug.Assert(prState == ProcessState.NotLoaded, "Process state error. It is " + prState + ". It must be " + ProcessState.NotLoaded);
+            name = fileName;
             completeFileName = GBFileSystem.CompleteFileNameForFile(baseDir, fileName + "." + ModuleExtension);
             if (GBFileSystem.FileExists(completeFileName))
             {
@@ -147,23 +157,25 @@ namespace GameBox.Processes
             prState = ProcessState.Running;
         }
 
-        internal void Render()
-        {
-            if (prState == ProcessState.Running)
-            {
-                currentScene.StartFrame();
-            }
+        internal void Render() {
+            currentScene.StartFrame();
         }
 
-        internal void OnResize(EventArgs e)
-        {
+        internal void OnResize(EventArgs e) {
             currentScene.SetProjection();
         }
 
-        internal void OnRenderFrame(FrameEventArgs e)
-        {
+        internal void OnRenderFrame(FrameEventArgs e) {
+            RenderingContext.RenderingProcess = this;
+            RenderingContext.e = e;
             Render();
         }
 
+
+
+        ~Process()
+        {
+            GBDebug.WriteLine("Deleting " + this + ":" + Name);
+        }
     }
 }

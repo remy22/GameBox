@@ -41,7 +41,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\GBEventReceiver.cs" />
     <Compile Include="GBDebug.cs" />
+    <Compile Include="Events\GBEvent.cs" />
+    <Compile Include="Graphics\Animations\Animator.cs" />
     <Compile Include="Graphics\Nodes\Image.cs" />
     <Compile Include="Graphics\Nodes\Text.cs" />
     <Compile Include="Graphics\Nodes\TextureDrawer.cs" />
@@ -54,6 +57,7 @@
     <Compile Include="Processes\ProcessManager.cs" />
     <Compile Include="Resources\GBFont.cs" />
     <Compile Include="Resources\Resource.cs" />
+    <Compile Include="Resources\ResourceManager.cs" />
     <Compile Include="XMLSerialization\GBXMLContainer.cs" />
     <Compile Include="GBFileSystem.cs" />
     <Compile Include="GBException.cs" />
