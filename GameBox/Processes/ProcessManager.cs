@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenTK;
+using GameBox.Events;
 
 namespace GameBox.Processes
 {
@@ -51,6 +52,7 @@ namespace GameBox.Processes
             ActivateFirstProcess();
             if (activeProcess != null) {
                 activeProcess.Start();
+                activeProcess.AddEvent(new GBEvent("Start"));
             }
         }
 
@@ -69,9 +71,9 @@ namespace GameBox.Processes
             activeProcess.OnRenderFrame(e);
         }
 
-        internal static void FinishProcess()
+        public static void AddEvent(GBEvent evnt)
         {
-
+            activeProcess.AddEvent(evnt);
         }
     }
 }

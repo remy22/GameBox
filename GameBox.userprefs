@@ -1,16 +1,18 @@
 ﻿<Properties GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\Processes\Process.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\Graphics\RenderNode.cs">
     <Files>
       <File FileName="GameBox\Main.cs" Line="15" Column="1" />
-      <File FileName="GameBox\XMLSerialization\GBXMLContainer.cs" Line="169" Column="10" />
+      <File FileName="GameBox\XMLSerialization\GBXMLContainer.cs" Line="169" Column="4" />
       <File FileName="GameBox\GBException.cs" Line="12" Column="4" />
       <File FileName="GameBox\GBProperties.cs" Line="30" Column="1" />
       <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\GBWindow.cs" Line="39" Column="4" />
       <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\GBSystem.cs" Line="25" Column="1" />
       <File FileName="GameBox\GBDebug.cs" Line="41" Column="1" />
       <File FileName="GameBox\Processes\ProcessManager.cs" Line="26" Column="1" />
-      <File FileName="GameBox\Processes\Process.cs" Line="38" Column="1" />
+      <File FileName="GameBox\Processes\Process.cs" Line="171" Column="14" />
+      <File FileName="GameBox\Graphics\RenderNode.cs" Line="12" Column="46" />
+      <File FileName="GameBox\Graphics\RenderingContext.cs" Line="14" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

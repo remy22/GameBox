@@ -27,6 +27,26 @@ namespace GameBox.XMLSerialization
             return new GBXMLContainer(new MemoryStream(new System.Text.UTF8Encoding().GetBytes(data)));
         }
 
+        public static GBXMLContainer LoadFromProperties(string[] data)
+        {
+            GBXMLContainer temp = new GBXMLContainer();
+            if (data.Length > 0)
+            {
+                temp.name = data[0];
+                int index = 1;
+                while (data.Length > index)
+                {
+                    GBXMLContainer internalTemp = new GBXMLContainer();
+                    internalTemp.name = data[index];
+                    index++;
+                    if (data.Length > index)
+                        internalTemp.textValue = data[index];
+                    temp.children.Add(temp);
+                }
+            }
+            return temp;
+        }
+
 		public GBXMLContainer()
 		{
 

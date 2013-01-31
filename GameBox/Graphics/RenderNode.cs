@@ -6,6 +6,7 @@ using System.Drawing;
 using GameBox.Graphics.Nodes;
 using GameBox.Graphics.Animations;
 using GameBox.Events;
+using OpenTK.Graphics.OpenGL;
 
 namespace GameBox.Graphics
 {
@@ -62,8 +63,10 @@ namespace GameBox.Graphics
 
             foreach (Animator anim in animators)
             {
-                anim.Update(RenderingContext.e);
+                anim.Render();
             }
+
+            GL.Translate(position.X, position.Y, 0);
 
             RenderImpl();
             foreach (RenderNode node in childrenNode)
@@ -80,15 +83,6 @@ namespace GameBox.Graphics
         public float ZOrder
         {
             get { return zOrder; }
-        }
-
-        public override void DispatchGBEvent(GBEvent evnt)
-        {
-            base.DispatchGBEvent(evnt);
-            foreach (RenderNode node in childrenNode)
-            {
-                node.DispatchGBEvent(evnt);
-            }
         }
     }
 }

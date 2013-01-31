@@ -6,6 +6,7 @@ using GameBox.XMLSerialization;
 using GameBox.Graphics;
 using OpenTK;
 using GameBox.Resources;
+using GameBox.Events;
 
 namespace GameBox.Processes
 {
@@ -168,10 +169,24 @@ namespace GameBox.Processes
         internal void OnRenderFrame(FrameEventArgs e) {
             RenderingContext.RenderingProcess = this;
             RenderingContext.e = e;
+            RenderingContext.currentEvents = eventList[eventListIndex];
+            SwapEventList();
             Render();
         }
 
+        private List<GBEvent>[] eventList = { new List<GBEvent>(), new List<GBEvent>() };
+        private int eventListIndex = 0;
 
+		public void AddEvent(GBEvent evnt)
+		{
+            eventList[eventListIndex].Add(evnt);
+		}
+
+        private void SwapEventList()
+        {
+            eventListIndex = (eventListIndex + 1) % 2;
+            eventList[eventListIndex].Clear();
+        }
 
         ~Process()
         {

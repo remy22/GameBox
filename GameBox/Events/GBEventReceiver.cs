@@ -1,5 +1,6 @@
 ﻿using System;
 using GameBox.XMLSerialization;
+using System.Collections.Generic;
 
 namespace GameBox.Events
 {
@@ -12,19 +13,25 @@ namespace GameBox.Events
             eventsToProcess = (GBXMLContainer)initData["ReceiveEvents"].Clone();
         }
 
-        public virtual void DispatchGBEvent(GBEvent evnt)
+        public virtual void DispatchGBEvents(List<GBEvent> evntList)
         {
-            DispatchActions(evnt);
+            foreach (GBEvent evnt in evntList)
+            {
+                DispatchActions(evnt);
+            }
         }
 
         public void DispatchActions(GBEvent evnt)
         {
             if (eventsToProcess.Exists(evnt.EventType))
             {
-                if (eventsToProcess[evnt.EventType].Exists("PerformAction"))
+                if (eventsToProcess[evnt.EventType].Exists("PerformActions"))
                 {
-                    GBXMLContainer container = eventsToProcess[evnt.EventType]["PerformAction"];
-                    DispatchAction(container);
+                    GBXMLContainer container = eventsToProcess[evnt.EventType]["PerformActions"];
+                    foreach (GBXMLContainer cnt in container.Children)
+                    {
+                        DispatchAction(cnt);
+                    }
                 }
             }
         }
