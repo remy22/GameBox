@@ -12,6 +12,7 @@ namespace GameBox.XMLSerialization
 		private List<GBXMLContainer> children = new List<GBXMLContainer>();
 		private string textValue;
 		private string name = "";
+		public static bool AttributesToChildren = true;
 
 		public static GBXMLContainer LoadOrNull(string file)
 		{
@@ -95,11 +96,21 @@ namespace GameBox.XMLSerialization
 				for (int i = 0; i < reader.AttributeCount; i++) {
 					// read the current attribute
 					reader.MoveToAttribute (i);
-					attributes [reader.Name] = reader.Value;
+					if (AttributesToChildren)
+					{
+						GBXMLContainer newChild = new GBXMLContainer();
+						newChild.name = reader.Name;
+						newChild.textValue = reader.Value;
+						children.Add(newChild);
+					}
+					else
+					{
+						attributes [reader.Name] = reader.Value;
+					}
 				}
 			}
-			reader.MoveToElement ();
-			bool EndReached = false;
+			reader.MoveToContent ();
+			bool EndReached = reader.IsEmptyElement;
 			while (!EndReached && reader.Read()) {
 				switch (reader.NodeType) {
 				case XmlNodeType.Element:
@@ -120,6 +131,11 @@ namespace GameBox.XMLSerialization
 				}
 			}
 		}
+
+        public void AddChild(GBXMLContainer container)
+        {
+            children.Add(container);
+        }
 
 		public string Text
 		{

@@ -82,7 +82,7 @@ namespace GameBox.Resources
             if (brush == null)
                 brush = Brushes.White;
             Color tr = Color.Transparent;
-            tr = Color.FromArgb(128, 0, 0, 0);
+//            tr = Color.FromArgb(128, 0, 0, 0);
             gfx.Clear(tr);
             gfx.DrawString(text, font.FontData, brush, point);
 

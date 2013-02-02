@@ -52,6 +52,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Processes\GBProcess.cs" />
+    <Compile Include="Processes\PatternObjects.cs" />
     <Compile Include="Processes\Process.cs" />
     <Compile Include="Processes\ProcessManager.cs" />
     <Compile Include="Resources\GBFont.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Resources\Texture.cs" />
     <Compile Include="GBSystem.cs" />
     <Compile Include="GBWindow.cs" />
+    <Compile Include="XMLSerialization\XMLSerializeContext.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

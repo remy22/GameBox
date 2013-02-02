@@ -7,6 +7,7 @@ using GameBox.Graphics.Nodes;
 using GameBox.Graphics.Animations;
 using GameBox.Events;
 using OpenTK.Graphics.OpenGL;
+using GameBox.Processes;
 
 namespace GameBox.Graphics
 {
@@ -27,6 +28,8 @@ namespace GameBox.Graphics
             Parent = parent;
             name = InitData.Name;
 
+            LoadPatterns();
+
             position = GBXMLContainer.ReadPointF(InitData);
 
             zOrder = float.Parse(Initdata["ZOrder", "0.0"].Text);
@@ -42,9 +45,18 @@ namespace GameBox.Graphics
             GBXMLContainer animXML = Initdata["Animators"];
             foreach (GBXMLContainer animator in animXML.Children)
             {
-                animators.Add(new Animator(animator));
+				GBXMLContainer animatorParsed = ProcessManager.ActiveProcess.patternObjects.ParsePattern(animator);
+				animators.Add(new Animator(animatorParsed));
             }
+        }
 
+        internal void LoadPatterns()
+        {
+            GBXMLContainer patternObjects = InitData["PatternObjects"];
+            foreach (GBXMLContainer container in patternObjects.Children)
+            {
+                ProcessManager.ActiveProcess.patternObjects.AddObject(container);
+            }
         }
 
         protected GBXMLContainer InitData
@@ -61,18 +73,23 @@ namespace GameBox.Graphics
         {
             uint count = 1;
 
+            GL.PushMatrix();
+
             foreach (Animator anim in animators)
             {
                 anim.Render();
             }
 
+            
             GL.Translate(position.X, position.Y, 0);
 
             RenderImpl();
-            foreach (RenderNode node in childrenNode)
-            {
-                count += node.Render();
-            }
+            for (int i = 0; i < childrenNode.Count; i++) {
+				RenderNode node = childrenNode [i];
+				count += node.Render ();
+			}
+
+            GL.PopMatrix();
             return count;
         }
 

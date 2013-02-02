@@ -25,13 +25,10 @@ namespace GameBox.Events
         {
             if (eventsToProcess.Exists(evnt.EventType))
             {
-                if (eventsToProcess[evnt.EventType].Exists("PerformActions"))
+                GBXMLContainer container = eventsToProcess[evnt.EventType];
+                foreach (GBXMLContainer cnt in container.Children)
                 {
-                    GBXMLContainer container = eventsToProcess[evnt.EventType]["PerformActions"];
-                    foreach (GBXMLContainer cnt in container.Children)
-                    {
-                        DispatchAction(cnt);
-                    }
+                    DispatchAction(cnt);
                 }
             }
         }

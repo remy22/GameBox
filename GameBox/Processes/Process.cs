@@ -37,6 +37,7 @@ namespace GameBox.Processes
         private string name = string.Empty;
 
         internal ResourceManager rManager = new ResourceManager();
+        internal PatternObjects patternObjects = new PatternObjects();
 
         public Process()
         {

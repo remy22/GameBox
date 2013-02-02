@@ -11,7 +11,6 @@ namespace GameBox.Graphics
 {
 	public class Scene : RenderNode
 	{
-        private List<string> resourceList = new List<string>();
         private bool isFirst = false;
         protected Process parentProcess = null;
         protected SizeF size;
@@ -20,17 +19,16 @@ namespace GameBox.Graphics
 		{
             parentProcess = parentProcess_;
             size = GBXMLContainer.ReadSizeF(InitData);
-            isFirst = bool.Parse(InitData["IsFirst",bool.FalseString].Text);
+            isFirst = bool.Parse(InitData["IsFirst", bool.FalseString].Text);
 
             LoadResourceInfo();
-            RenderingContext.RenderingScene = this;
 		}
 
         public bool IsFirst { get { return isFirst; } }
 
-        internal void LoadNotLoadedResources()
+		internal void LoadNotLoadedResources()
         {
-            foreach (string resString in resourceList)
+            foreach (string resString in XMLSerializeContext.resourceList)
             {
                 Resource res = ProcessManager.ActiveProcess.rManager.GetResource(resString);
                 GBDebug.WriteLineIf(res.Loaded, "Resource " + res + "(" + res.FileName + ") already loaded.");
@@ -54,7 +52,7 @@ namespace GameBox.Graphics
                 Type chType = Type.GetType("GameBox.Resources." + type);
                 Resource newResource = ProcessManager.ActiveProcess.rManager.GetOrCreateResource(chType, nodeName, fileName);
                 newResource.InitData = (GBXMLContainer)resource.Clone();
-                resourceList.Add(nodeName);
+				XMLSerializeContext.resourceList.Add(nodeName);
             }
         }
 
