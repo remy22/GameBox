@@ -1,0 +1,56 @@
+<GBMetaInfo>
+	<Info>
+		<Name>Brocker</Name>
+		<Version>0</Version>
+		<Subversion>1</Subversion>
+		<Release>4</Release>
+		<Build>45</Build>
+		<Author>LeDYoM</Author>
+	</Info>
+	<ScreenRequeriments Width="800" Height="600" />
+	<MetaData>
+		<StartWith>Brocker.BrockerProcess</StartWith>
+		<Scenes>
+			<MenuScene IsFirst="true" Dimensions="2" ZPos="0">
+				<Position X="0" Y="0" />
+				<Length Width="800" Height ="600" />
+				<Resources>
+					<BackgroundTexture Type="Texture" FileName="background.jpg" />
+					<MenuFont Type="GBFont" Size="40" FileName="f1.ttf"/>
+				</Resources>
+				<PatternObjects>
+					<AnimatorStartDown Time="5">
+						<ReceiveEvents>
+							<StartScene Action="StartAnimator" />
+              <KeyReleased Key="KEY_2" Action="Process.Exit" />
+						</ReceiveEvents>
+						<Translate>
+							<StartPosition X="0" Y="450" />
+							<EndPosition X="0" Y="0" />
+						</Translate>
+					</AnimatorStartDown>				
+				</PatternObjects>
+				<Children>
+					<Background Type="Image" Image="BackgroundTexture" />
+					<PlayLabel Type="Text" Text="Play" Font="MenuFont" AutoText="true">
+						<Position X="0" Y="0" />
+            <BorderColors>
+              <Top Red="1.0" Green ="0.0" Blue="0.0" Alpha="1.0" />
+              <Bottom Red="0.0" Green ="1.0" Blue="0.0" Alpha="1.0" />-->
+            </BorderColors>
+<!--            <Color Red="1.0" Green ="0.0" Blue="0.0" Alpha="1.0" />-->
+						<Animators>
+							<CopyPattern.AnimatorStartDown />
+						</Animators>
+					</PlayLabel>
+					<ExitLabel Type="Text" Text="Exit" Font="MenuFont" AutoText="true">
+						<Position X="0" Y="-50" />
+						<Animators>
+							<CopyPattern.AnimatorStartDown />
+						</Animators>
+					</ExitLabel>
+				</Children>
+			</MenuScene>
+		</Scenes>
+	</MetaData>
+</GBMetaInfo>

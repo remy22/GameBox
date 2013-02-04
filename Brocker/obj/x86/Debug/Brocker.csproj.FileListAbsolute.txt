@@ -1,0 +1,8 @@
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\Brocker\obj\x86\Debug\Brocker.csprojResolveAssemblyReference.cache
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\Brocker\bin\Debug\Brocker.exe
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\Brocker\bin\Debug\Brocker.pdb
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\Brocker\bin\Debug\GameBox.exe
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\Brocker\bin\Debug\OpenTK.dll
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\Brocker\bin\Debug\GameBox.pdb
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\Brocker\obj\x86\Debug\Brocker.exe
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\Brocker\obj\x86\Debug\Brocker.pdb
