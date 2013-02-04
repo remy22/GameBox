@@ -246,16 +246,16 @@ namespace GameBox.XMLSerialization
         public static SizeF ReadSizeF(GBXMLContainer stream)
         {
             return new SizeF(
-                float.Parse(stream["Length"]["Width", "-1.0"].Text),
-                float.Parse(stream["Length"]["Height", "-1.0"].Text)
+                NumberConverter.ParseFloat(stream["Length"]["Width", "-1.0"].Text),
+                NumberConverter.ParseFloat(stream["Length"]["Height", "-1.0"].Text)
             );
         }
 
         public static PointF ReadPointFFrom(GBXMLContainer stream, string field)
         {
             return new PointF(
-                float.Parse(stream[field]["X", "0.0"].Text),
-                float.Parse(stream[field]["Y", "0.0"].Text)
+                NumberConverter.ParseFloat(stream[field]["X", "0.0"].Text),
+                NumberConverter.ParseFloat(stream[field]["Y", "0.0"].Text)
             );
         }
 

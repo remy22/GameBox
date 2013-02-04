@@ -30,7 +30,7 @@ namespace GameBox.Resources
             PrivateFontCollection myFonts;
 
             FontFamily family = LoadFontFamily(fileName, out myFonts);
-            fontData = new Font(family, float.Parse(initData["Size","20.0"].Text));
+            fontData = new Font(family, NumberConverter.ParseFloat(initData["Size", "20.0"].Text));
             return true;
         }
     }

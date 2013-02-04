@@ -30,9 +30,7 @@ namespace GameBox.Graphics.Animations
 
         public void Reload()
         {
-            CultureInfo ci = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-            ci.NumberFormat.CurrencyDecimalSeparator = ".";
-            time = float.Parse(initData["Time", "10"].Text,NumberStyles.Any, ci);
+            time = NumberConverter.ParseFloat(initData["Time", "10"].Text);
 
             if (initData.Exists("Translate"))
             {

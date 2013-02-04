@@ -1,18 +1,16 @@
 ﻿<Properties GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\Graphics\RenderNode.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\Events\GBEventReceiver.cs">
     <Files>
-      <File FileName="GameBox\Main.cs" Line="15" Column="1" />
-      <File FileName="GameBox\XMLSerialization\GBXMLContainer.cs" Line="169" Column="4" />
-      <File FileName="GameBox\GBException.cs" Line="12" Column="4" />
-      <File FileName="GameBox\GBProperties.cs" Line="30" Column="1" />
-      <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\GBWindow.cs" Line="39" Column="4" />
-      <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\GBSystem.cs" Line="25" Column="1" />
-      <File FileName="GameBox\GBDebug.cs" Line="41" Column="1" />
-      <File FileName="GameBox\Processes\ProcessManager.cs" Line="26" Column="1" />
-      <File FileName="GameBox\Processes\Process.cs" Line="171" Column="14" />
-      <File FileName="GameBox\Graphics\RenderNode.cs" Line="12" Column="46" />
-      <File FileName="GameBox\Graphics\RenderingContext.cs" Line="14" Column="45" />
+      <File FileName="GameBox\Graphics\RenderNode.cs" Line="48" Column="28" />
+      <File FileName="Brocker\bin\Debug\Brocker.xml" Line="26" Column="1" />
+      <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Processes\ProcessManager.cs" Line="60" Column="1" />
+      <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Processes\Process.cs" Line="135" Column="1" />
+      <File FileName="GameBox\Graphics\Animations\Animator.cs" Line="26" Column="57" />
+      <File FileName="GameBox\Graphics\Nodes\Image.cs" Line="25" Column="59" />
+      <File FileName="GameBox\Graphics\Scene.cs" Line="75" Column="31" />
+      <File FileName="GameBox\Events\GBEvent.cs" Line="1" Column="1" />
+      <File FileName="GameBox\Events\GBEventReceiver.cs" Line="28" Column="75" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

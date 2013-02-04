@@ -21,6 +21,7 @@ namespace GameBox.Graphics
         protected bool visible = true;
         protected float zOrder;
         protected List<Animator> animators = new List<Animator>();
+        protected GBColor color;
 
         public RenderNode(GBXMLContainer initData, RenderNode parent) : base(initData)
         {
@@ -31,8 +32,9 @@ namespace GameBox.Graphics
             LoadPatterns();
 
             position = GBXMLContainer.ReadPointF(InitData);
+            color = new GBColor(InitData["Color"]);
 
-            zOrder = float.Parse(Initdata["ZOrder", "0.0"].Text);
+            zOrder = NumberConverter.ParseFloat(Initdata["ZOrder", "0.0"].Text);
             GBXMLContainer ch = Initdata["Children"];
             foreach (GBXMLContainer container in ch.Children)
             {

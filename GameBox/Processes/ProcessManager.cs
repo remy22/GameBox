@@ -52,7 +52,7 @@ namespace GameBox.Processes
             ActivateFirstProcess();
             if (activeProcess != null) {
                 activeProcess.Start();
-                activeProcess.AddEvent(new GBEvent("Start"));
+                activeProcess.AddEvent(new GBEvent("System.Actions.StartScene"));
             }
         }
 

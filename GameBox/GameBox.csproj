@@ -45,12 +45,14 @@
     <Compile Include="GBDebug.cs" />
     <Compile Include="Events\GBEvent.cs" />
     <Compile Include="Graphics\Animations\Animator.cs" />
+    <Compile Include="Graphics\GBColor.cs" />
     <Compile Include="Graphics\Nodes\Image.cs" />
     <Compile Include="Graphics\Nodes\Text.cs" />
     <Compile Include="Graphics\RenderingContext.cs" />
     <Compile Include="Graphics\RenderNode.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="NumberConverter.cs" />
     <Compile Include="Processes\GBProcess.cs" />
     <Compile Include="Processes\PatternObjects.cs" />
     <Compile Include="Processes\Process.cs" />
