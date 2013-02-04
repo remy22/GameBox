@@ -81,11 +81,13 @@ namespace GameBox.Graphics.Animations
             }
         }
 
-        public override void DispatchAction(GBXMLContainer actionData)
+        public override void DispatchAction(GBEvent evnt, string action)
         {
-            if (actionData.Name.Equals("Start"))
+            switch (action)
             {
-                Start();
+                case "StartAnimator":
+                    Start();
+                    break;
             }
         }
     }

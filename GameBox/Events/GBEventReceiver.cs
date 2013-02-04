@@ -17,23 +17,27 @@ namespace GameBox.Events
         {
             foreach (GBEvent evnt in evntList)
             {
-                DispatchActions(evnt);
+                switch (evnt.EventType)
+                {
+                    case "Actions":
+                        DispatchActions(evnt);
+                        break;
+                    case "Keyboard":
+                        break;
+                }
             }
         }
 
         public void DispatchActions(GBEvent evnt)
         {
-            if (eventsToProcess.Exists(evnt.EventType))
+            if (eventsToProcess.Exists(evnt.EventSubType))
             {
-                GBXMLContainer container = eventsToProcess[evnt.EventType];
-                foreach (GBXMLContainer cnt in container.Children)
-                {
-                    DispatchAction(cnt);
-                }
+                string action = eventsToProcess[evnt.EventSubType]["Action"].Text;
+                DispatchAction(evnt, action);
             }
         }
 
-        public virtual void DispatchAction(GBXMLContainer actionData)
+        public virtual void DispatchAction(GBEvent evnt, string action)
         {
         }
     }
