@@ -13,6 +13,7 @@ namespace GameBox.Resources
         protected string fileName;
         protected bool loaded = false;
         protected GBXMLContainer initData = new GBXMLContainer();
+        protected bool disposed = false;
 
         protected Resource()
         {
@@ -66,7 +67,10 @@ namespace GameBox.Resources
 
         ~Resource()
         {
-            GBDebug.WriteLine("Deleting resource " + Name);
+            if (loaded && !disposed)
+            {
+                GBDebug.WriteLine("Resource " + Name + " is leaking memory");
+            }
         }
     }
 }

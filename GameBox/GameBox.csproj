@@ -50,6 +50,7 @@
     <Compile Include="Graphics\Nodes\Text.cs" />
     <Compile Include="Graphics\RenderingContext.cs" />
     <Compile Include="Graphics\RenderNode.cs" />
+    <Compile Include="Input\GBKey.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="NumberConverter.cs" />

@@ -7,11 +7,11 @@ using GameBox.Processes;
 
 namespace GameBox.Resources
 {
-	public class Texture : Resource
+	public class Texture : Resource, IDisposable
 	{
-		private Bitmap bmp;
+		private Bitmap bmp = null;
 		private int texture = -1;
-        private System.Drawing.Graphics gfx;
+        private System.Drawing.Graphics gfx = null;
 
         private static Bitmap bmpTmp = null;
         private static System.Drawing.Graphics gfxTmp = null;
@@ -57,7 +57,7 @@ namespace GameBox.Resources
             return gfxTmp.MeasureString(str, f);
         }
 
-        internal Texture(GBFont font, string text, SizeF orSize, bool autoText)
+        internal Texture(string name_, GBFont font, string text, SizeF orSize, bool autoText) : base(name_,string.Empty)
         {
             GBDebug.Assert(orSize.Width > 0 || autoText, "Trying to create texture with width 0");
             GBDebug.Assert(orSize.Height > 0 || autoText, "Trying to create texture with height 0");
@@ -73,6 +73,8 @@ namespace GameBox.Resources
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int)sz.Width, (int)sz.Height, 0,
                 OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, IntPtr.Zero);
+
+            loaded = true;
 
             DrawString(text, font);
         }
@@ -127,5 +129,38 @@ namespace GameBox.Resources
         {
             GL.Disable(EnableCap.Texture2D);
         }
-	}
+
+        public void Dispose()
+        {
+            GBDebug.WriteLine("Disposing texture: " + Name);
+            if (!disposed && loaded)
+            {
+                disposed = true;
+                GC.SuppressFinalize(this);
+                if (texture > -1)
+                {
+                    GL.DeleteTexture(texture);
+                    texture = -1;
+                }
+
+                if (bmp != null)
+                {
+                    bmp.Dispose();
+                    bmp = null;
+                }
+
+                if (bmpTmp != null)
+                {
+                    bmpTmp.Dispose();
+                    bmpTmp = null;
+                }
+
+                if (gfx != null)
+                {
+                    gfx.Dispose();
+                    gfx = null;
+                }
+            }
+        }
+    }
 }

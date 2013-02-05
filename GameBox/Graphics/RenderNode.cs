@@ -22,6 +22,7 @@ namespace GameBox.Graphics
         protected float zOrder;
         protected List<Animator> animators = new List<Animator>();
         protected GBColor color;
+        protected List<string> states = new List<string>();
 
         public RenderNode(GBXMLContainer initData, RenderNode parent) : base(initData)
         {

@@ -52,7 +52,7 @@ namespace GameBox.Processes
             ActivateFirstProcess();
             if (activeProcess != null) {
                 activeProcess.Start();
-                activeProcess.AddEvent(new GBEvent("System.Actions.StartScene"));
+                activeProcess.AddEvent(new GBEvent("System.Control.StartScene"));
             }
         }
 
@@ -63,17 +63,43 @@ namespace GameBox.Processes
         internal static void OnUpdateFrame(FrameEventArgs e) {
         }
 
+        private static bool finishActiveProcess = false;
+
+        internal static void FinishActiveProcess()
+        {
+            finishActiveProcess = true;
+        }
+
+        internal static void UpdateProcesses()
+        {
+            if (finishActiveProcess)
+            {
+                if (activeProcess != null)
+                {
+                    activeProcess.rManager.DeleteAllResources();
+                    processes.Remove(activeProcess);
+                    activeProcess = null;
+                    GC.Collect();
+                    ActivateFirstProcess();
+                }
+                finishActiveProcess = false;
+            }
+        }
+
         internal static void OnResize(EventArgs e) {
-            activeProcess.OnResize(e);
+            if (activeProcess != null)
+                activeProcess.OnResize(e);
         }
 
         internal static void OnRenderFrame(FrameEventArgs e) {
-            activeProcess.OnRenderFrame(e);
+            if (activeProcess != null)
+                activeProcess.OnRenderFrame(e);
         }
 
         public static void AddEvent(GBEvent evnt)
         {
-            activeProcess.AddEvent(evnt);
+            if (activeProcess != null)
+                activeProcess.AddEvent(evnt);
         }
     }
 }

@@ -40,9 +40,9 @@ namespace GameBox.XMLSerialization
                     GBXMLContainer internalTemp = new GBXMLContainer();
                     internalTemp.name = data[index];
                     index++;
-                    if (data.Length > index)
-                        internalTemp.textValue = data[index];
-                    temp.children.Add(temp);
+                    internalTemp.textValue = (data.Length > index) ? data[index] : "";
+                    temp.children.Add(internalTemp);
+                    index++;
                 }
             }
             return temp;

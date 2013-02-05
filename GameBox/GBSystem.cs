@@ -80,6 +80,7 @@ namespace GameBox
             ellapsedSinceLastFrame = e.Time;
             ellapsedSinceStart += e.Time;
             ProcessManager.OnRenderFrame(e);
+            ProcessManager.UpdateProcesses();
         }
 
         internal static double EllapsedSinceStart

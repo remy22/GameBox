@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameBox.Processes;
+using System.Drawing;
 
 namespace GameBox.Resources
 {
@@ -8,31 +9,23 @@ namespace GameBox.Resources
     {
         private List<Texture> createdTextures = new List<Texture>();
         private List<GBFont> createdFonts = new List<GBFont>();
-/*
-        internal static List<Texture> TexturesForProccess(Process pr)
-        {
-            GBDebug.Assert(pr != null, "Process cannot be null");
-            List<Texture> t;
-            if (!createdTextures.TryGetValue(pr, out t))
-            {
-                GBDebug.WriteLine("Creating texture list for process " + pr.Name);
-                t = createdTextures[pr] = new List<Texture>();
-            }
-            return t;
-        }
 
-        internal static List<GBFont> FontsForProccess(Process pr)
+        public void DeleteAllResources()
         {
-            GBDebug.Assert(pr != null, "Process cannot be null");
-            List<GBFont> f;
-            if (!createdFonts.TryGetValue(pr, out f))
+            foreach (Texture texture in createdTextures)
             {
-                GBDebug.WriteLine("Creating font list for process " + pr.Name);
-                f = createdFonts[pr] = new List<GBFont>();
+                texture.Dispose();
             }
-            return f;
+
+            createdTextures.Clear();
+
+            foreach (GBFont font in createdFonts)
+            {
+                font.Dispose();
+            }
+
+            createdFonts.Clear();
         }
-        */
 
         public Texture GetTexture(string Name2Search, string fileName = "")
         {
@@ -75,6 +68,17 @@ namespace GameBox.Resources
             if (text2Return == null)
             {
                 text2Return = new Texture(Name2Search, fileName);
+                createdTextures.Add(text2Return);
+            }
+            return text2Return;
+        }
+
+        public Texture GetOrCreateTexture(string Name2Search, GBFont font, string text, SizeF size, bool autoText)
+        {
+            Texture text2Return = GetTexture(Name2Search, "");
+            if (text2Return == null)
+            {
+                text2Return = new Texture(Name2Search, font, text, size, autoText);
                 createdTextures.Add(text2Return);
             }
             return text2Return;

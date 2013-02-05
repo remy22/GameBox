@@ -10,7 +10,7 @@
       <File FileName="GameBox\Graphics\Nodes\Image.cs" Line="25" Column="59" />
       <File FileName="GameBox\Graphics\Scene.cs" Line="75" Column="31" />
       <File FileName="GameBox\Events\GBEvent.cs" Line="1" Column="1" />
-      <File FileName="GameBox\Events\GBEventReceiver.cs" Line="28" Column="75" />
+      <File FileName="GameBox\Events\GBEventReceiver.cs" Line="31" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

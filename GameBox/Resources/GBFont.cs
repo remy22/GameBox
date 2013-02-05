@@ -4,9 +4,9 @@ using System.Drawing.Text;
 
 namespace GameBox.Resources
 {
-    public class GBFont : Resource
+    public class GBFont : Resource, IDisposable
     {
-        private Font fontData;
+        private Font fontData = null;
 
    		public GBFont (string name_,string fileName_):base(name_,fileName_)
 		{
@@ -32,6 +32,22 @@ namespace GameBox.Resources
             FontFamily family = LoadFontFamily(fileName, out myFonts);
             fontData = new Font(family, NumberConverter.ParseFloat(initData["Size", "20.0"].Text));
             return true;
+        }
+
+        public void Dispose()
+        {
+            GBDebug.WriteLine("Disposing font: " + Name);
+            if (!disposed && loaded)
+            {
+                disposed = true;
+                GC.SuppressFinalize(this);
+
+                if (fontData != null)
+                {
+                    fontData.Dispose();
+                    fontData = null;
+                }
+            }
         }
     }
 }

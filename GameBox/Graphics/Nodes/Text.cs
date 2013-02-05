@@ -22,7 +22,7 @@ namespace GameBox.Graphics.Nodes
 
         public override void setActiveTexture(int index = 0)
         {
-            activeTexture = new Texture(font, text, size, autoText);
+            activeTexture = ProcessManager.ActiveProcess.rManager.GetOrCreateTexture(this.name+"."+text,font, text, size, autoText);
             size = activeTexture.size;
             enableTransparency = true;
         }

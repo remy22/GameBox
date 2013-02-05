@@ -3,6 +3,8 @@ using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using GameBox.Graphics;
+using OpenTK.Input;
+using GameBox.Processes;
 
 namespace GameBox
 {
@@ -44,9 +46,34 @@ namespace GameBox
         {
             base.OnLoad(e);
             GBSystem.OnLoadWindow(e);
+            SetupKeyboard();
         }
 
-		protected override void OnUpdateFrame(FrameEventArgs e)
+        private void SetupKeyboard()
+        {
+            Keyboard.KeyDown += HandleKeyDown;
+            Keyboard.KeyUp += HandleKeyUp;
+        }
+
+        void HandleKeyDown(object sender, KeyboardKeyEventArgs e)
+        {
+            if (ProcessManager.ActiveProcess != null)
+            {
+                string keyStr = e.Key.ToString();
+                ProcessManager.ActiveProcess.AddEvent(new Events.GBEvent("System.Keyboard.KeyDown", "Key", keyStr));
+            }
+        }
+
+        void HandleKeyUp(object sender, KeyboardKeyEventArgs e)
+        {
+            if (ProcessManager.ActiveProcess != null)
+            {
+                string keyStr = e.Key.ToString();
+                ProcessManager.ActiveProcess.AddEvent(new Events.GBEvent("System.Keyboard.KeyUp", "Key", keyStr));
+            }
+        }
+
+        protected override void OnUpdateFrame(FrameEventArgs e)
 		{
 			base.OnUpdateFrame(e);
 
@@ -69,6 +96,8 @@ namespace GameBox
 
             if (Keyboard[OpenTK.Input.Key.Number5])
                 RenderingContext.DrawBoundingBox = false;
+
+
 		}
 
         protected override void OnResize(EventArgs e)

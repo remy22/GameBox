@@ -22,7 +22,7 @@
 					<AnimatorStartDown Time="5">
 						<ReceiveEvents>
 							<StartScene Action="StartAnimator" />
-              				<KeyReleased Key="KEY_2" Action="Process.Exit" />
+              <KeyDown Key="Space" Action="Process.Finish" />
 						</ReceiveEvents>
 						<Translate>
 							<StartPosition X="0" Y="450" />

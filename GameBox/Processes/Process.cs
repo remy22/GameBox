@@ -189,6 +189,22 @@ namespace GameBox.Processes
             eventList[eventListIndex].Clear();
         }
 
+
+        public void DispatchAction(GBEvent evnt, string action)
+        {
+            if (action.StartsWith("Process."))
+            {
+                string shortAction = action.Substring("Process.".Length);
+                switch (shortAction)
+                {
+                    case "Finish":
+                        GBDebug.WriteLine("TODO: Finishing process");
+                        ProcessManager.FinishActiveProcess();
+                        break;
+                }
+            }
+        }
+
         ~Process()
         {
             GBDebug.WriteLine("Deleting " + this + ":" + Name);
