@@ -159,6 +159,11 @@ namespace GameBox.Processes
             prState = ProcessState.Running;
         }
 
+        internal Scene CurrentScene
+        {
+            get { return currentScene; }
+        }
+
         internal void Render() {
             currentScene.StartFrame();
         }
@@ -170,27 +175,29 @@ namespace GameBox.Processes
         internal void OnRenderFrame(FrameEventArgs e) {
             RenderingContext.RenderingProcess = this;
             RenderingContext.e = e;
-            RenderingContext.currentEvents = eventList[eventListIndex];
-            SwapEventList();
+            RenderingContext.currentEvents = eventList[eventListIndexToProcess];
             Render();
+            SwapEventList();
         }
 
         private List<GBEvent>[] eventList = { new List<GBEvent>(), new List<GBEvent>() };
-        private int eventListIndex = 0;
+        private int eventListIndexToAdd = 0;
+        private int eventListIndexToProcess = 1;
 
 		public void AddEvent(GBEvent evnt)
 		{
-            eventList[eventListIndex].Add(evnt);
+            eventList[eventListIndexToAdd].Add(evnt);
 		}
 
         private void SwapEventList()
         {
-            eventListIndex = (eventListIndex + 1) % 2;
-            eventList[eventListIndex].Clear();
+            eventListIndexToAdd = (eventListIndexToAdd + 1) % 2;
+            eventListIndexToProcess = (eventListIndexToProcess + 1) % 2;
+            eventList[eventListIndexToAdd].Clear();
         }
 
 
-        public void DispatchAction(GBEvent evnt, string action)
+        public void DispatchAction(GBEvent evnt, string action, GBXMLContainer actionData)
         {
             if (action.StartsWith("Process."))
             {

@@ -22,7 +22,7 @@ namespace GameBox.Graphics
         protected float zOrder;
         protected List<Animator> animators = new List<Animator>();
         protected GBColor color;
-        protected List<string> states = new List<string>();
+        protected string state = string.Empty;
 
         public RenderNode(GBXMLContainer initData, RenderNode parent) : base(initData)
         {
@@ -32,6 +32,7 @@ namespace GameBox.Graphics
 
             LoadPatterns();
 
+            state = InitData["InitialState"].Text;
             position = GBXMLContainer.ReadPointF(InitData);
             color = new GBColor(InitData["Color"]);
 
@@ -82,9 +83,15 @@ namespace GameBox.Graphics
             {
                 anim.Render();
             }
-
             
             GL.Translate(position.X, position.Y, 0);
+
+            if (name.Equals("MenuScene") && RenderingContext.currentEvents.Count > 0)
+            {
+                int a = 0;
+            }
+
+            DispatchGBEvents(RenderingContext.currentEvents);
 
             RenderImpl();
             for (int i = 0; i < childrenNode.Count; i++) {
@@ -96,6 +103,17 @@ namespace GameBox.Graphics
             return count;
         }
 
+        public virtual GBXMLContainer getProperty(string property)
+        {
+            switch (property)
+            {
+                case "State":
+                    return GBXMLContainer.LoadFromString("<"+property+">"+state+"</"+property+">");
+                default:
+                    return new GBXMLContainer();
+            }
+        }
+
         public virtual void RenderImpl()
         {
         }
@@ -104,5 +122,17 @@ namespace GameBox.Graphics
         {
             get { return zOrder; }
         }
+
+        public override void DispatchAction(GBEvent evnt, string action, GBXMLContainer actionData)
+        {
+            switch (action)
+            {
+                case "ChangeState":
+                    state = actionData["ActionParameter1"].Text;
+                    GBDebug.WriteLine("New state (" + name + "):" + state);
+                    break;
+            }
+        }
+
     }
 }

@@ -5,6 +5,7 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using GameBox.Events;
 using System.Globalization;
+using GameBox.Processes;
 
 namespace GameBox.Graphics.Animations
 {
@@ -20,6 +21,7 @@ namespace GameBox.Graphics.Animations
         private string name = string.Empty;
         private bool isActive = false;
         private double ellapsed = 0;
+        private bool loop;
 
         public Animator(GBXMLContainer initdata) : base(initdata)
         {
@@ -31,6 +33,7 @@ namespace GameBox.Graphics.Animations
         public void Reload()
         {
             time = NumberConverter.ParseFloat(initData["Time", "10"].Text);
+            loop = bool.Parse(initData["Loop", bool.FalseString].Text);
 
             if (initData.Exists("Translate"))
             {
@@ -66,7 +69,15 @@ namespace GameBox.Graphics.Animations
                 ellapsed += RenderingContext.e.Time;
                 if (ellapsed >= time)
                 {
-                    isActive = false;
+                    if (loop)
+                    {
+                        ellapsed = 0;
+                    }
+                    else
+                    {
+                        isActive = false;
+                    }
+                    ProcessManager.ActiveProcess.AddEvent(new GBEvent("System.Animators.EndReached", "Source", name));
                 }
                 else
                 {
@@ -81,7 +92,7 @@ namespace GameBox.Graphics.Animations
             }
         }
 
-        public override void DispatchAction(GBEvent evnt, string action)
+        public override void DispatchAction(GBEvent evnt, string action, GBXMLContainer actionData)
         {
             switch (action)
             {
