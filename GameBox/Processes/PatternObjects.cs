@@ -19,12 +19,17 @@ namespace GameBox.Processes
 
 		internal GBXMLContainer ParsePattern(GBXMLContainer patternOrigin)
 		{
-			string cpStr = "CopyPattern.";
-			int cpLen = cpStr.Length;
-			if (patternOrigin.Name.StartsWith(cpStr))
+            if (patternOrigin.Name.StartsWith("CopyPattern."))
 			{
-				string originPattern = patternOrigin.Name.Substring(cpLen, patternOrigin.Name.Length - cpLen);
+                string cpStr = "CopyPattern.";
+                int cpLen = cpStr.Length;
+                string originPattern = patternOrigin.Name.Substring(cpLen, patternOrigin.Name.Length - cpLen);
 				GBXMLContainer retVal = (GBXMLContainer)data[originPattern].Clone();
+                retVal.Overwrite(patternOrigin);
+                if (patternOrigin.Exists("newName"))
+                {
+                    retVal.Name = patternOrigin["newName"].Text;
+                }
 				return retVal;
 			}
 			return patternOrigin;

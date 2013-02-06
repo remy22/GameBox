@@ -146,6 +146,22 @@ namespace GameBox.XMLSerialization
 			}
 		}
 
+        public void Overwrite(GBXMLContainer data)
+        {
+            textValue = data.textValue;
+            foreach (GBXMLContainer container in data.children)
+            {
+                if (Exists(container.name))
+                {
+                    this[container.name].Overwrite(data[container.name]);
+                }
+                else
+                {
+                    AddChild(new GBXMLContainer(data[container.name]));
+                }
+            }
+        }
+
         public void AddChild(GBXMLContainer container)
         {
             children.Add(container);
@@ -158,7 +174,8 @@ namespace GameBox.XMLSerialization
 
         public string Name
         {
-            get { return name; }
+            get { return name;  }
+            set { name = value; }
         }
 
 		public override string ToString ()
