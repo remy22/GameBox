@@ -4,3 +4,5 @@ C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\bin\Debug\OpenTK.dll
 C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Debug\GameBox.exe
 C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Debug\GameBox.pdb
 C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\obj\x86\Debug\GameBox.csprojResolveAssemblyReference.cache
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox - copia\GameBox\obj\x86\Debug\GameBox.exe
+C:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox - copia\GameBox\obj\x86\Debug\GameBox.pdb

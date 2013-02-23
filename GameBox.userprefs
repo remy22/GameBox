@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="GameBox\Events\GBEventReceiver.cs">
     <Files>
-      <File FileName="GameBox\Graphics\RenderNode.cs" Line="48" Column="28" />
+      <File FileName="GameBox\Graphics\RenderNode.cs" Line="48" Column="1" />
       <File FileName="Brocker\bin\Debug\Brocker.xml" Line="26" Column="1" />
       <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Processes\ProcessManager.cs" Line="60" Column="1" />
       <File FileName="c:\Users\Ixmaelon\Desktop\MyProjects\C#\GameBox\GameBox\Processes\Process.cs" Line="135" Column="1" />

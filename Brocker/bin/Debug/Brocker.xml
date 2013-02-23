@@ -3,8 +3,8 @@
 		<Name>Brocker</Name>
 		<Version>0</Version>
 		<Subversion>1</Subversion>
-		<Release>4</Release>
-		<Build>45</Build>
+		<Release>5</Release>
+		<Build>50</Build>
 		<Author>LeDYoM</Author>
 	</Info>
 	<ScreenRequeriments Width="800" Height="600" />
@@ -12,23 +12,26 @@
 		<StartWith>Brocker.BrockerProcess</StartWith>
 		<Scenes>
 			<MenuScene IsFirst="true" Dimensions="2" ZPos="0">
+        <InitialState>StartAnimation</InitialState>
 				<Position X="0" Y="0" />
 				<Length Width="800" Height ="600" />
-				<Resources>
+        <ReceiveEvents>
+          <Animators.EndReached Source="AnimatorStartDown" Action="ChangeState" ActionParameter1="ShowMenu"/>
+        </ReceiveEvents>
+        <Resources>
 					<BackgroundTexture Type="Texture" FileName="background.jpg" />
 					<MenuFont Type="GBFont" Size="40" FileName="f1.ttf"/>
 				</Resources>
 				<PatternObjects>
-					<AnimatorStartDown Time="5">
-						<ReceiveEvents>
-							<StartScene Action="StartAnimator" />
-              <KeyDown Key="Space" Action="Process.Finish" />
-						</ReceiveEvents>
-						<Translate>
+					<AnimatorStartDown Time="4">
+            <ReceiveEvents>
+              <Control.StartScene Action="StartAnimator" />
+            </ReceiveEvents>
+            <Translate>
 							<StartPosition X="0" Y="450" />
 							<EndPosition X="0" Y="0" />
 						</Translate>
-					</AnimatorStartDown>				
+					</AnimatorStartDown>
 				</PatternObjects>
 				<Children>
 					<Background Type="Image" Image="BackgroundTexture" />
@@ -40,14 +43,18 @@
             </BorderColors>
 <!--            <Color Red="1.0" Green ="0.0" Blue="0.0" Alpha="1.0" />-->
 						<Animators>
-							<CopyPattern.AnimatorStartDown />
-						</Animators>
+              <CopyPattern.AnimatorStartDown newName="AnimatorStartDown">
+                <ReceiveEvents>
+                  <Keyboard.KeyDown Key="Space" RequireProperty.Scene.State="ShowMenu" Action="Process.Finish" />
+                </ReceiveEvents>
+              </CopyPattern.AnimatorStartDown>
+            </Animators>
 					</PlayLabel>
 					<ExitLabel Type="Text" Text="Exit" Font="MenuFont" AutoText="true">
 						<Position X="0" Y="-50" />
 						<Animators>
-							<CopyPattern.AnimatorStartDown />
-						</Animators>
+              <CopyPattern.AnimatorStartDown newName="AnimatorStartDown.ExitLabel"/>
+            </Animators>
 					</ExitLabel>
 				</Children>
 			</MenuScene>
