@@ -1,12 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GameBox.Processes
 {
-    public interface GBProcess
+    public class GBProcess
     {
-        void Start();
+    	public GBClient gbClient = null;
+
+        internal void Start(GBClient gbClient_)
+        {
+        	GBDebug.Assert(gbClient_ != null);
+        	gbClient = gbClient_;
+        	OnStart();
+        }
+        
+        public virtual void OnStart()
+        {
+        	
+        }
+        	
     }
 }

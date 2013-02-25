@@ -135,7 +135,7 @@ namespace GameBox.Processes
             GBXMLContainer scenes = metadata["MetaData"]["Scenes"];
             foreach (GBXMLContainer sceneData in scenes.Children)
             {
-                Scene newScene = new Scene(sceneData,this);
+                Scene newScene = new Scene(sceneData);
                 sceneList.Add(newScene);
                 if (newScene.IsFirst)
                 {

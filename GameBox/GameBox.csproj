@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\GBEventReceiver.cs" />
+    <Compile Include="GBClient.cs" />
     <Compile Include="GBDebug.cs" />
     <Compile Include="Events\GBEvent.cs" />
     <Compile Include="Graphics\Animations\Animator.cs" />

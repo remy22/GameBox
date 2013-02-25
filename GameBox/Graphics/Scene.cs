@@ -12,12 +12,10 @@ namespace GameBox.Graphics
 	public class Scene : RenderNode
 	{
         private bool isFirst = false;
-        protected Process parentProcess = null;
         protected SizeF size;
 
-		public Scene (GBXMLContainer data, Process parentProcess_) : base(data, null)
+		public Scene (GBXMLContainer data) : base(data, null)
 		{
-            parentProcess = parentProcess_;
             size = GBXMLContainer.ReadSizeF(InitData);
             isFirst = bool.Parse(InitData["IsFirst", bool.FalseString].Text);
 
@@ -36,7 +34,7 @@ namespace GameBox.Graphics
                 if (!res.Loaded)
                 {
                     GBDebug.WriteLine("Loading resource " + res + "(" + res.FileName + ")...");
-                    res.Load(parentProcess);
+                    res.Load(ProcessManager.ActiveProcess);
                 }
             }
         }

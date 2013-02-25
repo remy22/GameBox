@@ -11,7 +11,7 @@ using GameBox.Processes;
 
 namespace GameBox.Graphics
 {
-    public class RenderNode : GBEventReceiver
+    public class RenderNode
     {
         private GBXMLContainer Initdata;
         private RenderNode Parent;
@@ -24,7 +24,7 @@ namespace GameBox.Graphics
         protected GBColor color;
         protected string state = string.Empty;
 
-        public RenderNode(GBXMLContainer initData, RenderNode parent) : base(initData)
+        public RenderNode(GBXMLContainer initData, RenderNode parent)
         {
             Initdata = (GBXMLContainer)initData.Clone();
             Parent = parent;
@@ -85,14 +85,12 @@ namespace GameBox.Graphics
             }
             
             GL.Translate(position.X, position.Y, 0);
-
+/*
             if (name.Equals("MenuScene") && RenderingContext.currentEvents.Count > 0)
             {
                 int a = 0;
             }
-
-            DispatchGBEvents(RenderingContext.currentEvents);
-
+*/
             RenderImpl();
             for (int i = 0; i < childrenNode.Count; i++) {
 				RenderNode node = childrenNode [i];
@@ -122,17 +120,5 @@ namespace GameBox.Graphics
         {
             get { return zOrder; }
         }
-
-        public override void DispatchAction(GBEvent evnt, string action, GBXMLContainer actionData)
-        {
-            switch (action)
-            {
-                case "ChangeState":
-                    state = actionData["ActionParameter1"].Text;
-                    GBDebug.WriteLine("New state (" + name + "):" + state);
-                    break;
-            }
-        }
-
     }
 }
